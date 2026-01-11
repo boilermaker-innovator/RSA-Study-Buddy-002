@@ -261,6 +261,68 @@
             font-size: 0.8rem;
         }
         
+        /* Search Bar */
+        .search-bar {
+            padding: 12px 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .search-input-wrapper {
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .search-clear {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px;
+            display: none;
+        }
+        
+        .search-clear.visible {
+            display: block;
+        }
+        
+        .search-clear:hover {
+            color: var(--accent);
+        }
+
         /* Topic Filter */
         .topic-filter {
             padding: 12px 20px;
@@ -393,16 +455,16 @@
         }
         
         .why-text {
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.6;
-            color: var(--text-secondary);
+            color: var(--text-primary);
+            font-weight: 600;
         }
         
         .answer-text {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
             color: var(--success);
-            font-weight: 500;
         }
         
         .answer-options {
@@ -420,7 +482,6 @@
         
         .answer-options li.correct {
             color: var(--success);
-            font-weight: 500;
         }
         
         .answer-options li.correct::before {
@@ -613,6 +674,14 @@
                     <strong id="currentNum">1</strong> of <span id="totalNum">146</span>
                 </div>
                 <div class="topic-badge" id="topicBadge">All Topics</div>
+            </div>
+            
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Question number or keyword...">
+                    <button class="search-clear" id="searchClear" onclick="clearSearch()">×</button>
+                </div>
             </div>
             
             <div class="topic-filter" id="topicFilter">
@@ -879,6 +948,71 @@
             selectedLanguage = e.target.value;
             renderCard();
         });
+        
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+        
+        searchInput.addEventListener('input', (e) => {
+            const value = e.target.value.trim();
+            searchClear.classList.toggle('visible', value.length > 0);
+            
+            if (value === '') {
+                // Reset to show all (or filtered by topic)
+                filterQuestions();
+                renderCard();
+                return;
+            }
+            
+            // Check if it's a question number
+            const num = parseInt(value);
+            if (!isNaN(num) && num >= 1 && num <= questions.length) {
+                // Jump to that question number
+                const questionIndex = questions.findIndex(q => q.id === num);
+                if (questionIndex !== -1) {
+                    // Reset to all questions for this search
+                    filteredQuestions = [...questions];
+                    if (selectedTopic !== 'all') {
+                        filteredQuestions = questions.filter(q => q.category === selectedTopic);
+                    }
+                    // Find index in filtered list
+                    const filteredIndex = filteredQuestions.findIndex(q => q.id === num);
+                    if (filteredIndex !== -1) {
+                        currentIndex = filteredIndex;
+                        renderCard();
+                    }
+                }
+                return;
+            }
+            
+            // Keyword search
+            const term = value.toLowerCase();
+            let searchResults = questions.filter(q => {
+                const questionMatch = q.question.toLowerCase().includes(term);
+                const answerMatch = q.answer ? q.answer.toLowerCase().includes(term) : false;
+                const whyMatch = q.why ? q.why.toLowerCase().includes(term) : false;
+                return questionMatch || answerMatch || whyMatch;
+            });
+            
+            // Also filter by topic if one is selected
+            if (selectedTopic !== 'all') {
+                searchResults = searchResults.filter(q => q.category === selectedTopic);
+            }
+            
+            if (searchResults.length > 0) {
+                filteredQuestions = searchResults;
+                currentIndex = 0;
+                updateProgress();
+                renderCard();
+            }
+        });
+        
+        function clearSearch() {
+            searchInput.value = '';
+            searchClear.classList.remove('visible');
+            filterQuestions();
+            renderCard();
+        }
         
         // ============ CARD RENDERING ============
         function renderCard() {
