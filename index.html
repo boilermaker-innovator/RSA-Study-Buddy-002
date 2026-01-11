@@ -1,1279 +1,1324 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RSA StudyBuddy - Safety Training in YOUR Language</title>
-    
-    <!-- Social Media Preview -->
-    <meta property="og:title" content="RSA StudyBuddy - Safety Training in YOUR Language">
-    <meta property="og:description" content="Free RSA course helper with 146 questions in 15 languages. Built by a tradie, for tradies. Because safety shouldn't depend on how well you speak English.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://boilermaker-innovator.github.io/RSA-Study-Buddy-002/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="description" content="Free RSA course helper with 146 searchable questions in 15 languages. Pass your RSA first time.">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        :root {
-            --bg-primary: #0f1419;
-            --bg-secondary: #1a2028;
-            --bg-card: #232b35;
-            --accent: #00d4ff;
-            --accent-glow: rgba(0, 212, 255, 0.2);
-            --success: #4ade80;
-            --warning: #f59e0b;
-            --text-primary: #f0f0f0;
-            --text-secondary: #8899a6;
-            --border: #38444d;
-        }
-        
-        body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            min-height: 100dvh;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 0;
-            min-height: 100vh;
-            min-height: 100dvh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* ============ LANDING SCREEN ============ */
-        .landing-screen {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 40px 24px;
-            text-align: center;
-        }
-        
-        .hero-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding-bottom: 40px;
-        }
-        
-        .language-flags {
-            font-size: 1.8rem;
-            letter-spacing: 4px;
-            margin-bottom: 24px;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        
-        .hero-title {
-            font-size: 2.4rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-        
-        .hero-title span {
-            color: var(--accent);
-        }
-        
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            max-width: 300px;
-            margin: 0 auto 32px;
-        }
-        
-        .language-select-wrapper {
-            background: var(--bg-secondary);
-            border: 2px solid var(--border);
-            border-radius: 16px;
-            padding: 4px;
-            margin-bottom: 24px;
-        }
-        
-        .language-select {
-            width: 100%;
-            padding: 16px 20px;
-            background: transparent;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            font-family: inherit;
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300d4ff' stroke-width='2'%3E%3Cpolyline points='6,9 12,15 18,9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-        }
-        
-        .language-select:focus {
-            outline: none;
-        }
-        
-        .start-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .btn-primary {
-            background: var(--accent);
-            color: var(--bg-primary);
-            border: none;
-            padding: 18px 32px;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px var(--accent-glow);
-        }
-        
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 2px solid var(--border);
-            padding: 16px 32px;
-            border-radius: 14px;
-            font-size: 1rem;
-            font-weight: 500;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        
-        .stats-row {
-            display: flex;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border);
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .footer-tagline {
-            margin-top: auto;
-            padding-top: 24px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        
-        .footer-tagline strong {
-            color: var(--text-primary);
-        }
-        
-        /* ============ STUDY SCREEN ============ */
-        .study-screen {
-            display: none;
-            flex-direction: column;
-            min-height: 100vh;
-            min-height: 100dvh;
-        }
-        
-        .study-screen.active {
-            display: flex;
-        }
-        
-        .landing-screen.hidden {
-            display: none;
-        }
-        
-        /* Top Bar */
-        .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .back-btn {
-            background: none;
-            border: none;
-            color: var(--accent);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 8px;
-            margin: -8px;
-        }
-        
-        .back-btn:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-        
-        .progress-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        
-        .progress-text strong {
-            color: var(--accent);
-        }
-        
-        .topic-badge {
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-        }
-        
-        /* Search Bar */
-        .search-bar {
-            padding: 12px 20px;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .search-input-wrapper {
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 12px 16px 12px 44px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: inherit;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-        
-        .search-input::placeholder {
-            color: var(--text-secondary);
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-        }
-        
-        .search-clear {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 4px;
-            display: none;
-        }
-        
-        .search-clear.visible {
-            display: block;
-        }
-        
-        .search-clear:hover {
-            color: var(--accent);
-        }
 
-        /* Topic Filter */
-        .topic-filter {
-            padding: 12px 20px;
-            overflow-x: auto;
-            white-space: nowrap;
-            background: var(--bg-secondary);
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        
-        .topic-filter::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .topic-btn {
-            display: inline-block;
-            padding: 8px 16px;
-            margin-right: 8px;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .topic-btn:hover,
-        .topic-btn.active {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: var(--bg-primary);
-        }
-        
-        /* Question Card Area */
-        .card-area {
-            flex: 1;
-            position: relative;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .card-wrapper {
-            padding: 20px;
-            transition: opacity 0.3s ease-out;
-        }
-        
-        .card-wrapper.slide-left {
-            opacity: 0;
-        }
-        
-        .card-wrapper.slide-right {
-            opacity: 0;
-        }
-        
-        .question-card {
-            width: 100%;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-        }
-        
-        .question-header {
-            padding: 24px 24px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .question-number-badge {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--bg-primary);
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
+```
+<!-- Social Media Preview -->
+<meta property="og:title" content="RSA StudyBuddy - Free RSA Course Helper">
+<meta property="og:description" content="146 searchable Q&As from the RSA course. 15+ languages. Pass first time.">
+<meta property="og:image" content="https://i.ibb.co/4Z97kW8C/rsa-preview-card-v5.png">
+<meta property="og:url" content="https://boilermaker-innovator.github.io/RSA-Study-Buddy-002/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RSA StudyBuddy - Free RSA Course Helper">
+<meta name="twitter:description" content="146 searchable Q&As from the RSA course. 15+ languages. Pass first time.">
+<meta name="twitter:image" content="https://i.ibb.co/4Z97kW8C/rsa-preview-card-v5.png">
+<meta name="description" content="Free RSA course helper with 146 searchable questions in 15 languages. Pass your RSA first time.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    :root {
+        --bg-primary: #0f1419;
+        --bg-secondary: #1a2028;
+        --bg-card: #232b35;
+        --accent: #00d4ff;
+        --accent-glow: rgba(0, 212, 255, 0.2);
+        --success: #4ade80;
+        --warning: #f59e0b;
+        --text-primary: #f0f0f0;
+        --text-secondary: #8899a6;
+        --border: #38444d;
+    }
+    
+    body {
+        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow-x: hidden;
+    }
+    
+    .container {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* ============ LANDING SCREEN ============ */
+    .landing-screen {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 24px;
+        text-align: center;
+    }
+    
+    .hero-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 40px;
+    }
+    
+    .language-flags {
+        font-size: 1.8rem;
+        letter-spacing: 4px;
+        margin-bottom: 24px;
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+    
+    .hero-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 16px;
+    }
+    
+    .hero-title span {
+        color: var(--accent);
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+        max-width: 300px;
+        margin: 0 auto 32px;
+    }
+    
+    .language-select-wrapper {
+        background: var(--bg-secondary);
+        border: 2px solid var(--border);
+        border-radius: 16px;
+        padding: 4px;
+        margin-bottom: 24px;
+    }
+    
+    .language-select {
+        width: 100%;
+        padding: 16px 20px;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        font-family: inherit;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2300d4ff' stroke-width='2'%3E%3Cpolyline points='6,9 12,15 18,9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 16px center;
+    }
+    
+    .language-select:focus {
+        outline: none;
+    }
+    
+    .start-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn-primary {
+        background: var(--accent);
+        color: var(--bg-primary);
+        border: none;
+        padding: 18px 32px;
+        border-radius: 14px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--accent-glow);
+    }
+    
+    .btn-secondary {
+        background: transparent;
+        color: var(--text-secondary);
+        border: 2px solid var(--border);
+        padding: 16px 32px;
+        border-radius: 14px;
+        font-size: 1rem;
+        font-weight: 500;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .btn-secondary:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+    
+    /* EOT Course Banner */
+    .eot-banner {
+        display: block;
+        background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(34, 197, 94, 0.1));
+        border: 2px solid rgba(74, 222, 128, 0.3);
+        border-radius: 14px;
+        padding: 16px 20px;
+        margin-top: 24px;
+        text-align: center;
+        text-decoration: none;
+        color: var(--success);
+        font-size: 1.05rem;
+        transition: all 0.2s;
+    }
+
+    .eot-banner:hover {
+        background: rgba(74, 222, 128, 0.2);
+        border-color: rgba(74, 222, 128, 0.5);
+        transform: translateY(-2px);
+    }
+
+    .eot-banner strong {
+        color: #fff;
+    }
+
+    .eot-banner .arrow {
+        margin-left: 8px;
+    }
+    
+    .stats-row {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+    }
+    
+    .stat-item {
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent);
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .footer-tagline {
+        margin-top: auto;
+        padding-top: 24px;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+    }
+    
+    .footer-tagline strong {
+        color: var(--text-primary);
+    }
+    
+    /* ============ STUDY SCREEN ============ */
+    .study-screen {
+        display: none;
+        flex-direction: column;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+    
+    .study-screen.active {
+        display: flex;
+    }
+    
+    .landing-screen.hidden {
+        display: none;
+    }
+    
+    /* Top Bar */
+    .top-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .back-btn {
+        background: none;
+        border: none;
+        color: var(--accent);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 8px;
+        margin: -8px;
+    }
+    
+    .back-btn:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+    
+    .progress-text {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+    }
+    
+    .progress-text strong {
+        color: var(--accent);
+    }
+    
+    .topic-badge {
+        background: var(--bg-card);
+        color: var(--text-secondary);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+    }
+    
+    /* Search Bar */
+    .search-bar {
+        padding: 12px 20px;
+        background: var(--bg-secondary);
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .search-input-wrapper {
+        position: relative;
+    }
+    
+    .search-input {
+        width: 100%;
+        padding: 12px 16px 12px 44px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-size: 1rem;
+        font-family: inherit;
+    }
+    
+    .search-input:focus {
+        outline: none;
+        border-color: var(--accent);
+    }
+    
+    .search-input::placeholder {
+        color: var(--text-secondary);
+    }
+    
+    .search-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+    }
+    
+    .search-clear {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 4px;
+        display: none;
+    }
+    
+    .search-clear.visible {
+        display: block;
+    }
+    
+    .search-clear:hover {
+        color: var(--accent);
+    }
+
+    /* Topic Filter */
+    .topic-filter {
+        padding: 12px 20px;
+        overflow-x: auto;
+        white-space: nowrap;
+        background: var(--bg-secondary);
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .topic-filter::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .topic-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 8px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .topic-btn:hover,
+    .topic-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--bg-primary);
+    }
+    
+    /* Question Card Area */
+    .card-area {
+        flex: 1;
+        position: relative;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .card-wrapper {
+        padding: 20px;
+        transition: opacity 0.3s ease-out;
+    }
+    
+    .card-wrapper.slide-left {
+        opacity: 0;
+    }
+    
+    .card-wrapper.slide-right {
+        opacity: 0;
+    }
+    
+    .question-card {
+        width: 100%;
+        background: var(--bg-card);
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+    }
+    
+    .question-header {
+        padding: 24px 24px 20px;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .question-number-badge {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--bg-primary);
+        padding: 4px 12px;
+        border-radius: 8px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+    
+    .question-text {
+        font-size: 1.15rem;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+    
+    /* Card Content Sections */
+    .card-content {
+        padding: 0;
+    }
+    
+    .content-section {
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border);
+    }
+    
+    .content-section:last-child {
+        border-bottom: none;
+    }
+    
+    .section-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+    }
+    
+    .section-label.why {
+        color: var(--warning);
+    }
+    
+    .section-label.answer {
+        color: var(--success);
+    }
+    
+    .section-label.translation {
+        color: var(--accent);
+    }
+    
+    .why-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--text-primary);
+    }
+    
+    .answer-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--success);
+    }
+    
+    .answer-options {
+        list-style: none;
+    }
+    
+    .answer-options li {
+        padding: 8px 0;
+        padding-left: 28px;
+        position: relative;
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .answer-options li.correct {
+        color: var(--success);
+    }
+    
+    .answer-options li.correct::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--success);
+        font-weight: bold;
+    }
+    
+    .answer-options li:not(.correct)::before {
+        content: "✗";
+        position: absolute;
+        left: 0;
+        color: #666;
+    }
+    
+    .translation-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--accent);
+        font-style: italic;
+    }
+    
+    /* Navigation */
+    .nav-area {
+        padding: 20px;
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+    }
+    
+    .nav-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .nav-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 16px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--text-primary);
+        font-size: 1rem;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .nav-btn:hover:not(:disabled) {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+    
+    .nav-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+    
+    .nav-btn .arrow {
+        font-size: 1.2rem;
+    }
+    
+    .progress-bar-container {
+        height: 6px;
+        background: var(--bg-card);
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    
+    .progress-bar {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 3px;
+        transition: width 0.3s ease;
+    }
+    
+    .swipe-hint {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-top: 12px;
+    }
+    
+    /* ============ QUIZ MODE ============ */
+    .quiz-reveal-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 32px 24px;
+        background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+        border: 2px dashed var(--border);
+        border-radius: 12px;
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .quiz-reveal-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+    }
+    
+    .quiz-reveal-btn span {
+        font-size: 2rem;
+        margin-bottom: 8px;
+    }
+    
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 60px 24px;
+        color: var(--text-secondary);
+    }
+    
+    .empty-state-icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+    }
+    
+    .empty-state-text {
+        font-size: 1.1rem;
+    }
+    
+    /* ============ UTILITIES ============ */
+    .hidden {
+        display: none !important;
+    }
+    
+    @media (max-width: 380px) {
+        .hero-title {
+            font-size: 2rem;
         }
         
         .question-text {
-            font-size: 1.15rem;
-            line-height: 1.5;
-            font-weight: 500;
+            font-size: 1.05rem;
         }
-        
-        /* Card Content Sections */
-        .card-content {
-            padding: 0;
-        }
-        
-        .content-section {
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .content-section:last-child {
-            border-bottom: none;
-        }
-        
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-        
-        .section-label.why {
-            color: var(--warning);
-        }
-        
-        .section-label.answer {
-            color: var(--success);
-        }
-        
-        .section-label.translation {
-            color: var(--accent);
-        }
-        
-        .why-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--text-primary);
-        }
-        
-        .answer-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--success);
-        }
-        
-        .answer-options {
-            list-style: none;
-        }
-        
-        .answer-options li {
-            padding: 8px 0;
-            padding-left: 28px;
-            position: relative;
-            color: var(--text-secondary);
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        
-        .answer-options li.correct {
-            color: var(--success);
-        }
-        
-        .answer-options li.correct::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: bold;
-        }
-        
-        .answer-options li:not(.correct)::before {
-            content: "✗";
-            position: absolute;
-            left: 0;
-            color: #666;
-        }
-        
-        .translation-text {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: var(--accent);
-            font-style: italic;
-        }
-        
-        /* Navigation */
-        .nav-area {
-            padding: 20px;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-        }
-        
-        .nav-buttons {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-        
-        .nav-btn {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 16px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .nav-btn:hover:not(:disabled) {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        
-        .nav-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-        
-        .nav-btn .arrow {
-            font-size: 1.2rem;
-        }
-        
-        .progress-bar-container {
-            height: 6px;
-            background: var(--bg-card);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 3px;
-            transition: width 0.3s ease;
-        }
-        
-        .swipe-hint {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 12px;
-        }
-        
-        /* ============ QUIZ MODE ============ */
-        .quiz-reveal-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 32px 24px;
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
-            border: 2px dashed var(--border);
-            border-radius: 12px;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            font-family: inherit;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .quiz-reveal-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-        
-        .quiz-reveal-btn span {
-            font-size: 2rem;
-            margin-bottom: 8px;
-        }
-        
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 60px 24px;
-            color: var(--text-secondary);
-        }
-        
-        .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 16px;
-        }
-        
-        .empty-state-text {
-            font-size: 1.1rem;
-        }
-        
-        /* ============ UTILITIES ============ */
-        .hidden {
-            display: none !important;
-        }
-        
-        @media (max-width: 380px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .question-text {
-                font-size: 1.05rem;
-            }
-        }
-    </style>
+    }
+</style>
+```
+
 </head>
 <body>
     <div class="container">
-        
-        <!-- ============ LANDING SCREEN ============ -->
-        <div class="landing-screen" id="landingScreen">
-            <div class="hero-section">
-                <div class="language-flags">🇦🇺 → 🌏</div>
-                <h1 class="hero-title">Safety training in <span>YOUR</span> language</h1>
-                <p class="hero-subtitle">RSA course help that actually understands the content. In 15 languages.</p>
-                
-                <div class="language-select-wrapper">
-                    <label for="languageSelect" class="hidden">Select your language</label>
-                    <select class="language-select" id="languageSelect" aria-label="Select your language">
-                        <option value="">🌐 Select your language</option>
-                        <option value="tl">🇵🇭 Filipino (Tagalog)</option>
-                        <option value="id">🇮🇩 Indonesian</option>
-                        <option value="es">🇪🇸 Spanish</option>
-                        <option value="pt">🇧🇷 Portuguese</option>
-                        <option value="fr">🇫🇷 French</option>
-                        <option value="de">🇩🇪 German</option>
-                        <option value="it">🇮🇹 Italian</option>
-                        <option value="nl">🇳🇱 Dutch</option>
-                        <option value="mi">🇳🇿 Te Reo Māori</option>
-                        <option value="ru">🇷🇺 Russian</option>
-                        <option value="zh">🇨🇳 中文 (Mandarin)</option>
-                        <option value="vi">🇻🇳 Vietnamese</option>
-                        <option value="th">🇹🇭 Thai</option>
-                        <option value="ko">🇰🇷 Korean</option>
-                        <option value="ja">🇯🇵 Japanese</option>
-                    </select>
-                </div>
-                
-                <div class="start-buttons">
-                    <button class="btn-primary" onclick="startStudying()">Start Studying</button>
-                    <button class="btn-secondary" onclick="startQuiz()">Quiz Mode</button>
-                </div>
-                
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <div class="stat-number">146</div>
-                        <div class="stat-label">Questions</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">7</div>
-                        <div class="stat-label">Topics</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">15</div>
-                        <div class="stat-label">Languages</div>
-                    </div>
-                </div>
+
+```
+    <!-- ============ LANDING SCREEN ============ -->
+    <div class="landing-screen" id="landingScreen">
+        <div class="hero-section">
+            <div class="language-flags">🇦🇺 → 🌏</div>
+            <h1 class="hero-title">Safety training in <span>YOUR</span> language</h1>
+            <p class="hero-subtitle">RSA course help that actually understands the content. In 15 languages.</p>
+            
+            <div class="language-select-wrapper">
+                <label for="languageSelect" class="hidden">Select your language</label>
+                <select class="language-select" id="languageSelect" aria-label="Select your language">
+                    <option value="">🌐 Select your language</option>
+                    <option value="tl">🇵🇭 Filipino (Tagalog)</option>
+                    <option value="id">🇮🇩 Indonesian</option>
+                    <option value="es">🇪🇸 Spanish</option>
+                    <option value="pt">🇧🇷 Portuguese</option>
+                    <option value="fr">🇫🇷 French</option>
+                    <option value="de">🇩🇪 German</option>
+                    <option value="it">🇮🇹 Italian</option>
+                    <option value="nl">🇳🇱 Dutch</option>
+                    <option value="mi">🇳🇿 Te Reo Māori</option>
+                    <option value="ru">🇷🇺 Russian</option>
+                    <option value="zh">🇨🇳 中文 (Mandarin)</option>
+                    <option value="vi">🇻🇳 Vietnamese</option>
+                    <option value="th">🇹🇭 Thai</option>
+                    <option value="ko">🇰🇷 Korean</option>
+                    <option value="ja">🇯🇵 Japanese</option>
+                </select>
             </div>
             
-            <div class="footer-tagline">
-                <strong>Built by a tradie, for tradies</strong> 🛠️<br>
-                A StudyBuddy tool
+            <div class="start-buttons">
+                <button class="btn-primary" onclick="startStudying()">Start Studying</button>
+                <button class="btn-secondary" onclick="startQuiz()">Quiz Mode</button>
+            </div>
+            
+            <!-- EOT Course Link -->
+            <a href="https://www.eot.edu.au/online-courses/RSA/WA/" target="_blank" rel="noopener" class="eot-banner">
+                🎓 Need the RSA course? <strong>Only $29 at EOT</strong> <span class="arrow">→</span>
+            </a>
+            
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-number">146</div>
+                    <div class="stat-label">Questions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Topics</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Languages</div>
+                </div>
             </div>
         </div>
         
-        <!-- ============ STUDY SCREEN ============ -->
-        <div class="study-screen" id="studyScreen">
-            <div class="top-bar">
-                <button class="back-btn" onclick="goBack()" aria-label="Go back to home">←</button>
-                <div class="progress-text">
-                    <strong id="currentNum">1</strong> of <span id="totalNum">146</span>
-                </div>
-                <div class="topic-badge" id="topicBadge">All Topics</div>
-            </div>
-            
-            <div class="search-bar">
-                <div class="search-input-wrapper">
-                    <span class="search-icon" aria-hidden="true">🔍</span>
-                    <input type="text" class="search-input" id="searchInput" placeholder="Question number or keyword..." aria-label="Search questions">
-                    <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search">×</button>
-                </div>
-            </div>
-            
-            <div class="topic-filter" id="topicFilter" role="tablist" aria-label="Filter by topic">
-                <button class="topic-btn active" data-topic="all" role="tab" aria-selected="true">All</button>
-                <button class="topic-btn" data-topic="drinks" role="tab" aria-selected="false">Standard Drinks</button>
-                <button class="topic-btn" data-topic="health" role="tab" aria-selected="false">Health & BAC</button>
-                <button class="topic-btn" data-topic="intox" role="tab" aria-selected="false">Intoxication</button>
-                <button class="topic-btn" data-topic="service" role="tab" aria-selected="false">Service & Refusal</button>
-                <button class="topic-btn" data-topic="minors" role="tab" aria-selected="false">Minors & ID</button>
-                <button class="topic-btn" data-topic="penalties" role="tab" aria-selected="false">Penalties</button>
-                <button class="topic-btn" data-topic="house" role="tab" aria-selected="false">House Policies</button>
-            </div>
-            
-            <div class="card-area" id="cardArea">
-                <div class="card-wrapper" id="cardWrapper">
-                    <!-- Card populated by JS -->
-                </div>
-            </div>
-            
-            <div class="nav-area">
-                <div class="nav-buttons">
-                    <button class="nav-btn" id="prevBtn" onclick="prevQuestion()" aria-label="Previous question">
-                        <span class="arrow">←</span> Previous
-                    </button>
-                    <button class="nav-btn" id="nextBtn" onclick="nextQuestion()" aria-label="Next question">
-                        Next <span class="arrow">→</span>
-                    </button>
-                </div>
-                <div class="progress-bar-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
-                </div>
-                <div class="swipe-hint">Swipe left or right to navigate</div>
-            </div>
+        <div class="footer-tagline">
+            <strong>Built by a tradie, for tradies</strong> 🛠️<br>
+            A StudyBuddy tool
         </div>
-        
     </div>
     
-    <script>
-        // ============ QUESTION DATA (146 Questions) ============
-        const questions = [
-            // STANDARD DRINKS (Q1-25)
-            {id:1,category:"drinks",question:"How many grams of pure alcohol does a standard drink contain?",answer:"10 grams",why:"This is the universal measure in Australia. It helps you calculate how much alcohol someone has consumed regardless of drink type.",type:"text"},
-            {id:2,category:"drinks",question:"What tool is used to measure standard drinks when pouring spirits?",answer:"A jigger (with 15ml and 30ml ends)",why:"A jigger ensures consistent pours. 30ml of standard spirits (40% ABV) = 1 standard drink. Eyeballing leads to over-serving.",type:"text"},
-            {id:3,category:"drinks",question:"How many standard drinks are in a 375ml stubby of full-strength beer (4.8% ABV)?",answer:"1.4 standard drinks",why:"Full-strength beer has more alcohol than people think. A 'couple of stubbies' is actually close to 3 standard drinks.",type:"text"},
-            {id:4,category:"drinks",question:"How many standard drinks are in a 375ml stubby of MID STRENGTH beer (3.5%)?",answer:"1.0 standard drink",why:"Mid-strength is a good option to suggest to patrons who want to pace themselves - it's exactly one standard drink per stubby.",type:"text"},
-            {id:5,category:"drinks",question:"How many standard drinks are in a 425ml schooner of FULL STRENGTH beer?",answer:"1.6 standard drinks",why:"A schooner is bigger than a pot/middy. Two schooners = over 3 standard drinks, which exceeds the first-hour driving guideline for men.",type:"text"},
-            {id:6,category:"drinks",question:"What is the alcohol percentage of full strength beer?",answer:"4.8%",why:"Knowing the standard percentages helps you quickly estimate standard drinks without looking at labels.",type:"text"},
-            {id:7,category:"drinks",question:"What is the alcohol percentage of mid strength beer?",answer:"3.5%",why:"Mid-strength is a responsible alternative to suggest. It's noticeably lower than full-strength (4.8%).",type:"text"},
-            {id:8,category:"drinks",question:"What is the alcohol percentage of low strength beer?",answer:"2.7%",why:"Low-strength beer lets people enjoy the social aspect of drinking while significantly reducing alcohol intake.",type:"text"},
-            {id:9,category:"drinks",question:"What is the typical alcohol percentage of wine?",answer:"11.5-13% (white wine 11.5%, red wine 13%, champagne 12%)",why:"Wine is much stronger than beer. A 'glass' at a restaurant is often 150-200ml, which is 1.5-2 standard drinks.",type:"text"},
-            {id:10,category:"drinks",question:"How much wine equals ONE standard drink?",answer:"100ml",why:"This is less than most wine glasses hold. A typical restaurant pour (150ml) is 1.5 standard drinks.",type:"text"},
-            {id:11,category:"drinks",question:"How much spirits/liqueur equals ONE standard drink?",answer:"30ml",why:"This is one end of a jigger. A 'double' is 60ml = 2 standard drinks. Cocktails with multiple spirits add up fast.",type:"text"},
-            {id:12,category:"drinks",question:"True or False: A standard drink is the same as a standard glass.",answer:"False - A 200ml glass of wine = 2 standard drinks",why:"This is a common misconception. Venues often serve more than one standard drink per glass, especially for wine.",type:"text"},
-            {id:13,category:"drinks",question:"Why should you ONLY use a free-flow spirit pourer with a jigger?",answer:"Without a jigger you cannot determine how much spirit you are pouring",why:"Free-pouring looks professional but leads to inconsistent (usually over) pours. Always measure to serve responsibly.",type:"text"},
-            {id:14,category:"drinks",question:"Calculate: 1 x 425ml full strength beer + 1 x 285ml mid strength beer = how many standard drinks?",answer:"2.4 standard drinks (1.6 + 0.8 = 2.4)",why:"Being able to quickly calculate a patron's consumption helps you monitor and prevent intoxication.",type:"text"},
-            {id:15,category:"drinks",question:"Calculate: 2 x 100ml red wine + 1 x 60ml port = how many standard drinks?",answer:"2.8 standard drinks (2 x 1.0 + 0.8 = 2.8)",why:"Port is fortified wine (higher alcohol). Even small amounts add significant standard drinks.",type:"text"},
-            {id:16,category:"drinks",question:"How many standard drinks are in a case (24 x 375ml) of MID STRENGTH beer?",answer:"24 standard drinks",why:"Each mid-strength stubby = 1 standard drink. This makes mid-strength easy to track.",type:"text"},
-            {id:17,category:"drinks",question:"Which of the following are equivalent to ONE standard drink?",options:[{text:"Full strength middy/pot (285ml)",correct:true},{text:"Wine (100ml)",correct:true},{text:"Spirits/liqueurs (30ml)",correct:true},{text:"Fortified wine (60ml)",correct:true},{text:"Light beer schooner (425ml)",correct:true},{text:"Low strength stubby (375ml)",correct:false}],why:"Memorise these equivalents - they're the foundation of tracking patron consumption.",type:"multiple"},
-            {id:18,category:"drinks",question:"Which of these are considered 'high risk drinks' that promote irresponsible consumption?",options:[{text:"Test Tubes",correct:true},{text:"Shooters",correct:true},{text:"Laybacks",correct:true},{text:"Yard Glasses",correct:true},{text:"Buckets",correct:true},{text:"Spray bottles/Backpacks",correct:true},{text:"Schooners",correct:false}],why:"These drinks encourage rapid consumption (sculling). Many venues ban them in their house policies.",type:"multiple"},
-            {id:19,category:"drinks",question:"By law in Australia, all bottles, cans and casks of liquor must state:",options:[{text:"The number of standard drinks",correct:true},{text:"The percentage of alcohol by volume",correct:true},{text:"The recommended daily intake",correct:false},{text:"The price per standard drink",correct:false}],why:"Labelling laws help consumers make informed choices. You can always check the label if unsure.",type:"multiple"},
-            {id:20,category:"drinks",question:"What is the alcohol percentage of standard spirits (vodka, rum, whiskey)?",answer:"40% ABV (some can be higher)",why:"Spirits are much stronger than beer (4.8%) or wine (12%). A small amount goes a long way.",type:"text"},
-            {id:21,category:"drinks",question:"How many standard drinks in a 750ml bottle of wine at 13% ABV?",answer:"Approximately 7.7 standard drinks",why:"A bottle of wine shared between two people is nearly 4 standard drinks each - above daily guidelines.",type:"text"},
-            {id:22,category:"drinks",question:"What is a 'nip' of spirits and how many standard drinks is it?",answer:"A nip is 30ml = 1 standard drink",why:"A 'nip' is the standard single measure. A 'double' is 60ml = 2 standard drinks.",type:"text"},
-            {id:23,category:"drinks",question:"How many standard drinks in a typical cocktail with 60ml of spirits?",answer:"At least 2 standard drinks (more if multiple spirits)",why:"Cocktails are deceptive - they taste nice but can contain 2-4 standard drinks per glass.",type:"text"},
-            {id:24,category:"drinks",question:"What is the alcohol percentage of fortified wines like port and sherry?",answer:"Around 17-20% ABV",why:"Fortified wines are stronger than regular wine. 60ml = 1 standard drink.",type:"text"},
-            {id:25,category:"drinks",question:"How many standard drinks in a 285ml pot/middy of full-strength beer?",answer:"1.1 standard drinks",why:"Pots/middies are a good option for pacing - close to one standard drink each.",type:"text"},
-            
-            // HEALTH & BAC (Q26-50)
-            {id:26,category:"health",question:"What does BAC stand for?",answer:"Blood Alcohol Concentration",why:"BAC measures the percentage of alcohol in your blood. In Australia, the legal driving limit is 0.05% BAC for most drivers.",type:"text"},
-            {id:27,category:"health",question:"How long does the liver take to process one standard drink?",answer:"Approximately one hour",why:"Coffee, food, or cold showers don't speed this up. Only time reduces BAC. This is why people can still be over the limit the morning after.",type:"text"},
-            {id:28,category:"health",question:"What is the legal driving BAC limit in Australia for most drivers?",answer:"0.05%",why:"Even at 0.05%, your reaction time and judgement are impaired. For learners, P-platers, and professional drivers it's 0.00%.",type:"text"},
-            {id:29,category:"health",question:"What is the ONLY thing that sobers someone up?",answer:"Time - nothing else works (not coffee, cold showers, fresh air, etc.)",why:"This is crucial to understand. No 'tricks' work. If someone is intoxicated, they need time to sober up.",type:"text"},
-            {id:30,category:"health",question:"What factors affect how quickly someone becomes intoxicated?",options:[{text:"Food in stomach",correct:true},{text:"Rate of drinking",correct:true},{text:"Body size",correct:true},{text:"Sun/heat exposure",correct:true},{text:"Health conditions",correct:true},{text:"Gender (women reach higher BAC)",correct:true},{text:"Medications",correct:true},{text:"Hair colour",correct:false}],why:"Everyone processes alcohol differently. A small person drinking quickly on an empty stomach will become intoxicated much faster.",type:"multiple"},
-            {id:31,category:"health",question:"Why do women typically reach higher BAC than men from the same amount of alcohol?",answer:"Women have less body water than men, so alcohol is more concentrated",why:"Women also generally have lower body weight and different enzyme levels. Don't assume same drinks = same intoxication.",type:"text"},
-            {id:32,category:"health",question:"At what BAC level does risk of death become significant?",answer:"0.40% and above - risk of CNS depression and death",why:"This is alcohol poisoning territory. Breathing and heart rate can stop. Call an ambulance immediately.",type:"text"},
-            {id:33,category:"health",question:"According to Australian alcohol guidelines, healthy adults should drink no more than:",options:[{text:"10 standard drinks per week",correct:true},{text:"4 standard drinks on any one day",correct:true},{text:"14 standard drinks per week",correct:false},{text:"6 standard drinks on any one day",correct:false}],why:"These guidelines were updated in 2020 - lower than before. Any drinking carries some health risk.",type:"multiple"},
-            {id:34,category:"health",question:"Who should NOT drink alcohol at all according to Australian guidelines?",options:[{text:"Pregnant women",correct:true},{text:"Women trying to become pregnant",correct:true},{text:"Breastfeeding women (safest option)",correct:true},{text:"People under 18",correct:true},{text:"Anyone over 65",correct:false}],why:"There is no known safe level of alcohol during pregnancy. It can cause permanent damage to the baby.",type:"multiple"},
-            {id:35,category:"health",question:"What is FASD?",answer:"Fetal Alcohol Spectrum Disorder - a range of lifelong disabilities caused by prenatal alcohol exposure",why:"FASD is 100% preventable by not drinking during pregnancy. There is no safe amount of alcohol during pregnancy.",type:"text"},
-            {id:36,category:"health",question:"For safe driving, how many standard drinks can a man have in the first hour?",answer:"2 standard drinks in the first hour, then 1 standard drink per hour after",why:"This is a GUIDE only - individual factors mean some people will exceed 0.05% BAC with this amount.",type:"text"},
-            {id:37,category:"health",question:"For safe driving, how many standard drinks can a woman have in the first hour?",answer:"1 standard drink in the first hour, then 1 standard drink per hour after",why:"Women generally process alcohol slower and reach higher BAC from the same amount.",type:"text"},
-            {id:38,category:"health",question:"What are SHORT-TERM effects of alcohol?",options:[{text:"Sleep disruptions",correct:true},{text:"Fatigue",correct:true},{text:"Hangovers and headaches",correct:true},{text:"Impaired judgement",correct:true},{text:"Cirrhosis of the liver",correct:false}],why:"Short-term effects happen during or soon after drinking. They're warning signs of overdoing it.",type:"multiple"},
-            {id:39,category:"health",question:"What are LONG-TERM effects of excessive alcohol consumption?",options:[{text:"Liver cirrhosis",correct:true},{text:"Stroke and heart disease",correct:true},{text:"Mental illness and depression",correct:true},{text:"Cancer (mouth, throat, liver)",correct:true},{text:"Brain damage",correct:true},{text:"Hangovers",correct:false}],why:"Long-term heavy drinking causes serious, often irreversible damage to multiple organs.",type:"multiple"},
-            {id:40,category:"health",question:"How does eating food affect alcohol absorption?",answer:"Food slows alcohol absorption, reducing peak BAC",why:"Always encourage patrons to eat. An empty stomach means faster intoxication.",type:"text"},
-            {id:41,category:"health",question:"Why does drinking in the sun or heat increase intoxication risk?",answer:"Dehydration accelerates alcohol's effects, and heat masks symptoms of intoxication",why:"Summer drinking and outdoor events need extra monitoring. People may not realise how affected they are.",type:"text"},
-            {id:42,category:"health",question:"What is 'binge drinking'?",answer:"Consuming more than 4 standard drinks on a single occasion",why:"Binge drinking significantly increases risk of accidents, violence, and alcohol poisoning.",type:"text"},
-            {id:43,category:"health",question:"How does mixing alcohol with medications affect the body?",answer:"It can increase or alter the effects of both, potentially causing dangerous reactions",why:"Never assume medications are safe with alcohol. Even common painkillers can interact badly.",type:"text"},
-            {id:44,category:"health",question:"What happens to BAC after you stop drinking?",answer:"BAC continues to rise for 30-60 minutes after last drink, then slowly decreases",why:"Someone who seems okay can become more intoxicated after they stop drinking. Keep monitoring.",type:"text"},
-            {id:45,category:"health",question:"Why is the 0.05% BAC limit important?",answer:"Even at this level, reaction time, vision, and judgement are impaired",why:"0.05% isn't 'safe' - it's the legal limit. Impairment begins with the first drink.",type:"text"},
-            {id:46,category:"health",question:"What is alcohol poisoning?",answer:"A potentially fatal result of drinking large amounts in a short time, causing the body to shut down",why:"Signs include unconsciousness, vomiting while unconscious, slow/irregular breathing, and seizures. Call 000 immediately.",type:"text"},
-            {id:47,category:"health",question:"What should you do if someone passes out from drinking?",answer:"Place them in recovery position, stay with them, call 000 if breathing is slow or irregular",why:"Never leave an unconscious drunk person alone. They can choke on vomit or stop breathing.",type:"text"},
-            {id:48,category:"health",question:"According to venue breath testing signs, are readings accepted by police or courts?",answer:"NO - venue breath tests are not accurate and your BAC can rise for 1+ hour after last drink",why:"Breath testing machines at venues are for guidance only. They can give people false confidence.",type:"text"},
-            {id:49,category:"health",question:"What effect does alcohol have on the brain?",answer:"It's a depressant that slows brain function, affecting judgement, coordination, and reaction time",why:"Alcohol isn't a stimulant - it reduces inhibitions by slowing the parts of the brain that control behaviour.",type:"text"},
-            {id:50,category:"health",question:"How does age affect alcohol processing?",answer:"Older adults process alcohol slower and are more susceptible to its effects",why:"As we age, body water decreases and liver function slows. Elderly patrons may become intoxicated faster.",type:"text"},
-            
-            // INTOXICATION (Q51-75)
-            {id:51,category:"intox",question:"What does 'unduly intoxicated' mean?",answer:"A person's mental or physical faculties are impaired by alcohol to a noticeable degree",why:"This is the legal threshold for refusing service. You must stop serving BEFORE they reach this point.",type:"text"},
-            {id:52,category:"intox",question:"What are physical signs of intoxication?",options:[{text:"Slurred speech",correct:true},{text:"Unsteady on feet",correct:true},{text:"Bloodshot/glazed eyes",correct:true},{text:"Spilling drinks",correct:true},{text:"Difficulty with fine motor skills",correct:true},{text:"Drowsiness",correct:true},{text:"Wearing sunglasses inside",correct:false}],why:"Look for multiple signs - one sign alone could have other explanations (medical condition, disability).",type:"multiple"},
-            {id:53,category:"intox",question:"What are behavioural signs of intoxication?",options:[{text:"Loud or boisterous behaviour",correct:true},{text:"Aggressive or argumentative",correct:true},{text:"Inappropriate comments",correct:true},{text:"Loss of inhibitions",correct:true},{text:"Drinking faster than normal",correct:true},{text:"Overly friendly/affectionate",correct:true},{text:"Sitting quietly alone",correct:false}],why:"Behaviour changes often appear before physical signs. Someone can be intoxicated while still standing steadily.",type:"multiple"},
-            {id:54,category:"intox",question:"True or False: Slurred speech automatically means someone is intoxicated.",answer:"False - You must establish reasonable belief based on multiple signs, not discriminate based on one factor",why:"Slurred speech could be a medical condition, disability, or accent. Look for multiple indicators.",type:"text"},
-            {id:55,category:"intox",question:"What is 'reasonable belief' in relation to intoxication?",answer:"A conclusion based on observable signs and behaviour, not assumptions or stereotypes",why:"You need evidence to refuse service - not just a gut feeling. Document what you observed.",type:"text"},
-            {id:56,category:"intox",question:"Why should you monitor patrons throughout their visit?",answer:"Intoxication develops over time - someone who seemed fine earlier may become intoxicated",why:"Don't just check at entry. Regular monitoring lets you intervene before problems develop.",type:"text"},
-            {id:57,category:"intox",question:"What should you do if you notice early signs of intoxication?",answer:"Slow service, offer food and water, switch to low-alcohol options",why:"Early intervention is easier than dealing with someone who is already unduly intoxicated.",type:"text"},
-            {id:58,category:"intox",question:"Can you serve someone who arrived at the venue already intoxicated?",answer:"No - it's illegal to serve anyone who is intoxicated, regardless of where they became intoxicated",why:"Entry should be refused to intoxicated people. If they slip through, do not serve them.",type:"text"},
-            {id:59,category:"intox",question:"What is 'secondary supply' of alcohol?",answer:"When someone buys alcohol for another person who cannot legally be served",why:"Watch for patrons buying drinks for intoxicated friends or minors. You can refuse these sales.",type:"text"},
-            {id:60,category:"intox",question:"What factors might make someone APPEAR intoxicated when they're not?",options:[{text:"Medical conditions (diabetes, stroke)",correct:true},{text:"Disabilities",correct:true},{text:"Fatigue/exhaustion",correct:true},{text:"Medication side effects",correct:true},{text:"Language barriers",correct:true},{text:"Drinking water",correct:false}],why:"Don't discriminate. If unsure, politely speak to the person to assess their state.",type:"multiple"},
-            {id:61,category:"intox",question:"How does drinking speed affect intoxication?",answer:"Drinking faster overwhelms the liver's ability to process alcohol, causing rapid intoxication",why:"Sculling, shots, and drinking games cause fast intoxication. Slow service helps prevent this.",type:"text"},
-            {id:62,category:"intox",question:"What is the 'sobering up' myth?",answer:"The false belief that coffee, food, fresh air, or cold water can speed up sobering",why:"Only time works. These things might make someone feel more alert but don't reduce BAC.",type:"text"},
-            {id:63,category:"intox",question:"Why do intoxicated people often not realise how drunk they are?",answer:"Alcohol impairs judgement and self-awareness - they genuinely believe they're fine",why:"Don't rely on patrons to self-regulate. Your professional assessment matters more than their opinion.",type:"text"},
-            {id:64,category:"intox",question:"What stages does intoxication typically progress through?",answer:"Relaxed → Loud/Talkative → Uncoordinated → Confused → Unconscious",why:"Recognise early stages and intervene. By the uncoordinated stage, you're already too late.",type:"text"},
-            {id:65,category:"intox",question:"How does mixing alcohol with energy drinks mask intoxication?",answer:"Caffeine makes people feel more alert and awake despite being intoxicated",why:"Someone drinking vodka Red Bulls may seem fine but have a dangerously high BAC.",type:"text"},
-            {id:66,category:"intox",question:"What is 'alcohol tolerance'?",answer:"When regular drinkers need more alcohol to feel the same effects",why:"High tolerance doesn't mean they're less impaired - their BAC is still elevated. Don't be fooled.",type:"text"},
-            {id:67,category:"intox",question:"How does drinking on an empty stomach affect intoxication?",answer:"Alcohol absorbs much faster, leading to rapid intoxication",why:"Always encourage food. Ask if they've eaten - it's a responsible service practice.",type:"text"},
-            {id:68,category:"intox",question:"What should you watch for with groups of drinkers?",answer:"Peer pressure to drink more, rounds that speed up consumption, competitive drinking",why:"Groups can escalate quickly. Monitor the whole table, not just individuals.",type:"text"},
-            {id:69,category:"intox",question:"What is 'drug-affected' behaviour?",answer:"Signs of impairment from substances other than alcohol, or combined with alcohol",why:"Drug-affected people must also be refused service. Mixing drugs and alcohol is extremely dangerous.",type:"text"},
-            {id:70,category:"intox",question:"Signs that someone may be drug-affected include:",options:[{text:"Dilated or constricted pupils",correct:true},{text:"Sweating despite cool temperature",correct:true},{text:"Teeth grinding or jaw clenching",correct:true},{text:"Hyperactivity or extreme lethargy",correct:true},{text:"Paranoid behaviour",correct:true},{text:"Having a quiet conversation",correct:false}],why:"Drug symptoms differ from alcohol. If you suspect drug use, do not serve and monitor closely.",type:"multiple"},
-            {id:71,category:"intox",question:"Can you be held liable if an intoxicated patron you served injures someone?",answer:"Yes - duty of care extends to third parties who may be harmed by your patron",why:"If you serve someone who then crashes their car, you could be partly responsible.",type:"text"},
-            {id:72,category:"intox",question:"What is the best time to refuse service?",answer:"BEFORE someone becomes unduly intoxicated - when you notice early warning signs",why:"Prevention is better than dealing with an aggressive drunk person. Intervene early.",type:"text"},
-            {id:73,category:"intox",question:"How should you assess a regular patron who 'always drinks this much'?",answer:"The same as anyone else - tolerance doesn't make intoxication legal or safe to serve",why:"Don't let familiarity cloud your judgement. The law applies equally to regulars.",type:"text"},
-            {id:74,category:"intox",question:"What environmental factors in a venue can mask intoxication?",options:[{text:"Dim lighting",correct:true},{text:"Loud music (hard to hear slurred speech)",correct:true},{text:"Crowded spaces (hard to see unsteadiness)",correct:true},{text:"Seating (hides unsteady walking)",correct:true},{text:"Good air conditioning",correct:false}],why:"Venues sometimes unintentionally make it harder to spot intoxication. Be extra vigilant.",type:"multiple"},
-            {id:75,category:"intox",question:"What is 'pre-loading' and why is it a problem?",answer:"Drinking heavily before arriving at a venue - people may already be intoxicated on arrival",why:"Pre-loaders are already on their way to intoxication. Extra care needed at entry.",type:"text"},
-            
-            // SERVICE & REFUSAL (Q76-100)
-            {id:76,category:"service",question:"When refusing service to an intoxicated person, you should:",options:[{text:"Be polite and respectful",correct:true},{text:"Speak to them away from others if possible",correct:true},{text:"Explain the reason clearly",correct:true},{text:"Offer alternatives (water, food, taxi)",correct:true},{text:"Involve management if needed",correct:true},{text:"Argue loudly so everyone knows",correct:false}],why:"A calm, professional refusal reduces conflict and maintains dignity for everyone.",type:"multiple"},
-            {id:77,category:"service",question:"What is 'duty of care'?",answer:"The legal obligation to take reasonable steps to ensure the safety of patrons and others",why:"If someone you served gets hurt or hurts someone else, you could be liable if you didn't fulfil your duty of care.",type:"text"},
-            {id:78,category:"service",question:"Can you serve someone who is already intoxicated if they promise to take a taxi home?",answer:"No",why:"How they get home is irrelevant. Serving an intoxicated person is illegal regardless of their transport plans.",type:"text"},
-            {id:79,category:"service",question:"What alternatives should you offer when refusing service?",options:[{text:"Water",correct:true},{text:"Soft drinks",correct:true},{text:"Food",correct:true},{text:"Coffee (won't sober them up but gives them time)",correct:true},{text:"Help arranging transport home",correct:true},{text:"A different type of alcohol",correct:false}],why:"Offering alternatives shows you care about them, not just refusing service.",type:"multiple"},
-            {id:80,category:"service",question:"What is 'Vicarious Liability'?",answer:"When an employer can be held legally responsible for the actions of their employees",why:"If you break RSA laws, your employer may also be fined. Everyone has skin in the game.",type:"text"},
-            {id:81,category:"service",question:"Name responsible service practices:",options:[{text:"Not serving intoxicated patrons",correct:true},{text:"Checking IDs",correct:true},{text:"Offering food and water",correct:true},{text:"Promoting low-alcohol options",correct:true},{text:"Monitoring consumption",correct:true},{text:"Serving drinks quickly to avoid queues",correct:false}],why:"These aren't just rules - they're your protection. Following RSA practices protects you, your venue, and patrons.",type:"multiple"},
-            {id:82,category:"service",question:"What are EFFECTIVE RSA strategies?",options:[{text:"Offering food",correct:true},{text:"Providing water/non-alcoholic drinks",correct:true},{text:"Talking to the patron's friends for help",correct:true},{text:"Slowing service",correct:true},{text:"Happy hour specials",correct:false},{text:"Refilling drinks proactively",correct:false}],why:"These strategies help prevent intoxication rather than just reacting to it.",type:"multiple"},
-            {id:83,category:"service",question:"What should you do if a refused patron becomes aggressive?",answer:"Stay calm, maintain distance, call for backup/security, don't argue or get physical",why:"Your safety comes first. Don't escalate. Get help from colleagues or security.",type:"text"},
-            {id:84,category:"service",question:"Who else should be informed when you refuse service?",answer:"Other bar staff, security, and management",why:"If they don't know, the patron might just get served by someone else.",type:"text"},
-            {id:85,category:"service",question:"How should refusals be documented?",answer:"In the incident register with time, description of patron, signs observed, and action taken",why:"Documentation protects you and the venue if there's ever a complaint or legal issue.",type:"text"},
-            {id:86,category:"service",question:"Can you refuse service without giving a reason?",answer:"Yes, but you cannot refuse based on discriminatory reasons (race, gender, disability, etc.)",why:"You have the right to refuse, but it must be for legitimate RSA reasons, not discrimination.",type:"text"},
-            {id:87,category:"service",question:"What is the purpose of 'cutting off' a patron?",answer:"To prevent them from becoming unduly intoxicated or causing harm",why:"It's harm prevention. You're protecting them, other patrons, and yourself.",type:"text"},
-            {id:88,category:"service",question:"What phrases can you use when refusing service?",answer:"'I can see you've had enough', 'How about some water or food?', 'I can't serve you more alcohol tonight'",why:"Direct but polite language works best. Don't apologise excessively or be aggressive.",type:"text"},
-            {id:89,category:"service",question:"Why should you avoid over-apologising when refusing service?",answer:"It can seem insincere and may invite argument about whether refusal is necessary",why:"Be firm and clear. One apology is enough - then move to solutions.",type:"text"},
-            {id:90,category:"service",question:"What is 'responsible service' in takeaway/bottle shop context?",answer:"Same principles - don't sell to intoxicated people, check ID for minors, refuse secondary supply",why:"RSA applies wherever alcohol is sold, not just bars and clubs.",type:"text"},
-            {id:91,category:"service",question:"How should staff stay updated on RSA requirements?",options:[{text:"Visit state regulatory website regularly",correct:true},{text:"Subscribe to industry newsletters",correct:true},{text:"Attend refresher training",correct:true},{text:"Read venue house policy updates",correct:true},{text:"Rely only on original training from years ago",correct:false}],why:"Laws and best practices change. Staying current is part of being a professional.",type:"multiple"},
-            {id:92,category:"service",question:"What should you do if a patron disputes your assessment of their intoxication?",answer:"Stay calm, explain you're following the law, offer alternatives, involve management if needed",why:"You don't need their agreement. Your professional judgement is what counts legally.",type:"text"},
-            {id:93,category:"service",question:"What is 'service to vulnerable persons'?",answer:"Being extra careful with people who may be more affected by alcohol (elderly, small, on medication)",why:"Some people are more vulnerable to alcohol's effects. Adjust your service accordingly.",type:"text"},
-            {id:94,category:"service",question:"Why is free water important for responsible service?",answer:"It helps patrons stay hydrated, slows drinking, and provides a no-cost alternative",why:"Water should always be available for free. It's a simple but effective RSA tool.",type:"text"},
-            {id:95,category:"service",question:"What should a venue do to help patrons get home safely?",options:[{text:"Display taxi phone numbers",correct:true},{text:"Provide public transport information",correct:true},{text:"Offer to call a taxi",correct:true},{text:"Have a courtesy bus (some venues)",correct:true},{text:"Let them drive themselves",correct:false}],why:"Getting patrons home safely is part of duty of care. Make it easy for them to make good choices.",type:"multiple"},
-            {id:96,category:"service",question:"What is 'drink spiking' and what should you watch for?",answer:"Adding substances to drinks without consent - watch for people interfering with others' drinks",why:"Drink spiking is a crime. Be alert to suspicious behaviour around unattended drinks.",type:"text"},
-            {id:97,category:"service",question:"What should you do if you suspect a drink has been spiked?",answer:"Don't let the person drink it, notify security/management, assist the potential victim, keep the drink as evidence",why:"Act quickly but calmly. The victim's safety is the priority.",type:"text"},
-            {id:98,category:"service",question:"Who can legally serve alcohol in a licensed venue?",answer:"Only people who hold a current RSA certificate (requirements vary by state)",why:"RSA certification is mandatory. You cannot serve alcohol without valid certification.",type:"text"},
-            {id:99,category:"service",question:"How long is RSA certification valid?",answer:"Varies by state - typically 3-5 years before refresher/renewal required",why:"Check your state's requirements. Keep your certification current.",type:"text"},
-            {id:100,category:"service",question:"What is the primary goal of RSA?",answer:"Harm minimisation - reducing harm to individuals, families, and the community from alcohol",why:"RSA isn't about stopping fun - it's about preventing the serious harms alcohol can cause.",type:"text"},
-            
-            // MINORS & ID (Q101-120)
-            {id:101,category:"minors",question:"What is the legal drinking age in Australia?",answer:"18 years old",why:"This applies everywhere in Australia. There's no 'drinking with parents' exception in licensed venues.",type:"text"},
-            {id:102,category:"minors",question:"What forms of ID are acceptable to prove age?",options:[{text:"Current driver licence",correct:true},{text:"Australian or foreign passport",correct:true},{text:"Proof of age card",correct:true},{text:"Digital driver licence (varies by state)",correct:true},{text:"Keypass card",correct:true},{text:"Student ID card",correct:false},{text:"Birth certificate",correct:false}],why:"These are the ONLY acceptable forms. Student IDs and birth certificates don't prove identity with a photo.",type:"multiple"},
-            {id:103,category:"minors",question:"At what age should you ask someone for ID?",answer:"If they appear under 25 years old",why:"When in doubt, check. It's better to ask a 30-year-old than serve a 17-year-old.",type:"text"},
-            {id:104,category:"minors",question:"What should you check when verifying an ID?",options:[{text:"Photo matches the person",correct:true},{text:"Date of birth shows 18+",correct:true},{text:"Security features (holograms, etc.)",correct:true},{text:"Card hasn't expired",correct:true},{text:"Signs of tampering",correct:true},{text:"The person's outfit",correct:false}],why:"Check all elements - don't just glance at the birthdate. Feel the card for tampering.",type:"multiple"},
-            {id:105,category:"minors",question:"Why are minors considered 'at risk' for alcohol-related harm?",options:[{text:"Brain still developing until mid-20s",correct:true},{text:"More susceptible to peer pressure",correct:true},{text:"Less experience with alcohol effects",correct:true},{text:"Lower body weight typically",correct:true},{text:"They have more money to spend",correct:false}],why:"Young brains are particularly vulnerable to alcohol damage. The law protects them for good reason.",type:"multiple"},
-            {id:106,category:"minors",question:"Which minors are EXEMPT and may be allowed in licensed areas?",options:[{text:"Minors employed at the venue",correct:true},{text:"Minors with a responsible adult for a meal",correct:true},{text:"Minors attending a function (e.g. wedding)",correct:true},{text:"Any minor who looks mature",correct:false}],why:"Exemptions have strict conditions. 'Looking mature' is never an exemption.",type:"multiple"},
-            {id:107,category:"minors",question:"Who is considered a 'responsible adult' for a minor in a licensed venue?",options:[{text:"Parent",correct:true},{text:"Step-parent",correct:true},{text:"Guardian",correct:true},{text:"Spouse or de-facto partner (if minor is married)",correct:true},{text:"Older sibling (over 18)",correct:false},{text:"Any adult friend",correct:false}],why:"The definition is specific. An older friend or sibling doesn't qualify.",type:"multiple"},
-            {id:108,category:"minors",question:"At what age can minors work in a licensed venue?",answer:"16+ in most states (with restrictions on duties)",why:"Young workers can do certain tasks but usually cannot serve alcohol unsupervised.",type:"text"},
-            {id:109,category:"minors",question:"What should you do if someone presents a suspected false ID in QLD or NT?",answer:"You MUST confiscate the ID",why:"QLD and NT have mandatory confiscation. Check your state's requirements.",type:"text"},
-            {id:110,category:"minors",question:"What should you do if someone presents a suspected false ID in NSW?",answer:"You CANNOT confiscate it - refuse service and ask them to leave",why:"NSW doesn't allow confiscation. Just refuse and report if needed.",type:"text"},
-            {id:111,category:"minors",question:"What should you do if someone presents a suspected false ID in VIC, WA, TAS, SA, or ACT?",answer:"You MAY confiscate the ID (optional, not mandatory)",why:"You have the power but not the obligation. Use your judgement.",type:"text"},
-            {id:112,category:"minors",question:"What is the penalty for serving a minor?",answer:"Up to $20,000+ for individuals, higher for licensees (varies by state)",why:"This can be YOU personally, not just the venue. It can also mean losing your RSA certification.",type:"text"},
-            {id:113,category:"minors",question:"According to the NSW poster, what is the fine for a minor who illegally enters or obtains alcohol?",answer:"$2,200",why:"Minors also face penalties - they can be fined for attempting to buy alcohol.",type:"text"},
-            {id:114,category:"minors",question:"What is 'secondary supply' to a minor?",answer:"When an adult purchases alcohol and gives it to a minor",why:"Watch for adults buying drinks then passing them to young-looking people in their group.",type:"text"},
-            {id:115,category:"minors",question:"Can a minor consume alcohol in a licensed venue if their parent gives it to them?",answer:"No - minors cannot be SUPPLIED alcohol in licensed venues (different rules apply in private homes)",why:"Licensed venue rules are different from home. Parents can't give alcohol to minors in pubs/clubs.",type:"text"},
-            {id:116,category:"minors",question:"What areas of a licensed venue can minors enter?",answer:"Dining areas with a responsible adult, some function areas - NOT bars or gaming areas",why:"Different parts of venues have different rules. Know your venue's licensed areas.",type:"text"},
-            {id:117,category:"minors",question:"What time must minors leave a licensed venue?",answer:"Usually by a specified time (often 10pm or midnight) - varies by licence and state",why:"Even with a responsible adult, minors can't stay all night. Check your venue's conditions.",type:"text"},
-            {id:118,category:"minors",question:"How can you calculate someone's age from their date of birth?",answer:"Subtract birth year from current year, adjust if birthday hasn't occurred yet this year",why:"Practice this calculation. Under pressure, it's easy to make mistakes.",type:"text"},
-            {id:119,category:"minors",question:"What are signs an ID might be fake or tampered with?",options:[{text:"Photo looks different from the person",correct:true},{text:"Bumpy or uneven surface",correct:true},{text:"Discoloration around text or photo",correct:true},{text:"Missing security features",correct:true},{text:"The card feels too thick or thin",correct:true},{text:"Person is nervous",correct:false}],why:"Feel the card, check the edges, look for holograms. Fake IDs are often poor quality.",type:"multiple"},
-            {id:120,category:"minors",question:"If you accidentally serve a minor, what should you do?",answer:"Stop service immediately, remove the drink if possible, notify management, document the incident",why:"Act quickly to minimise harm. Honest mistakes should still be reported and documented.",type:"text"},
-            
-            // PENALTIES (Q121-132)
-            {id:121,category:"penalties",question:"Can you be held personally responsible for serving an intoxicated person?",answer:"Yes - both the individual server AND the licensee can be fined",why:"This isn't just a venue problem. You personally can be fined thousands and lose your certification.",type:"text"},
-            {id:122,category:"penalties",question:"In QLD, what is the maximum fine for staff who serve an intoxicated person?",answer:"$11,500",why:"That's a year's savings for many people. The consequences are serious.",type:"text"},
-            {id:123,category:"penalties",question:"According to the Victoria poster, what is the penalty for a licensee who supplies liquor to an intoxicated person?",answer:"Exceeds $19,000",why:"Licensees face even higher penalties than staff. They're responsible for the whole venue.",type:"text"},
-            {id:124,category:"penalties",question:"In QLD, how long can a person be barred from a venue?",answer:"Indefinitely, or for a specified period - group venue bans are also possible",why:"Barring protects everyone. Persistent troublemakers can be banned from multiple venues.",type:"text"},
-            {id:125,category:"penalties",question:"Which people can be removed from a licensed venue in ALL states?",options:[{text:"Non-exempt minors",correct:true},{text:"Intoxicated persons",correct:true},{text:"Persons aiding supply to prohibited persons",correct:true},{text:"Disorderly persons",correct:true},{text:"Drug-affected persons",correct:true},{text:"People who haven't bought a drink",correct:false}],why:"These removal powers are consistent across Australia. You have the right to remove these people.",type:"multiple"},
-            {id:126,category:"penalties",question:"According to the Victoria poster, what is the penalty for a drunk person who refuses to leave?",answer:"Exceeds $8,000",why:"Patrons also face penalties. You can remind them of this when asking them to leave.",type:"text"},
-            {id:127,category:"penalties",question:"In ACT, what is the fine for a patron who abuses staff?",answer:"$220",why:"Staff don't have to tolerate abuse. Patrons can be fined for their behaviour.",type:"text"},
-            {id:128,category:"penalties",question:"What can happen to a venue's licence for repeated RSA breaches?",answer:"Suspension, additional conditions, or complete cancellation of the licence",why:"The venue could lose its right to operate. Everyone's job depends on compliance.",type:"text"},
-            {id:129,category:"penalties",question:"According to the SA poster, what is the on-the-spot fine amount?",answer:"$550",why:"On-the-spot fines are immediate - no court required. They add up quickly for repeat offences.",type:"text"},
-            {id:130,category:"penalties",question:"What are the consequences of losing your RSA certification?",answer:"You cannot legally work serving alcohol in any licensed venue",why:"This affects your entire career in hospitality. Protect your certification.",type:"text"},
-            {id:131,category:"penalties",question:"Can criminal charges result from RSA breaches?",answer:"Yes - in serious cases involving harm, criminal charges are possible",why:"Beyond fines, you could face criminal prosecution if your breach leads to serious harm.",type:"text"},
-            {id:132,category:"penalties",question:"Who can bring legal action against a venue for alcohol-related harm?",options:[{text:"The patron who was served",correct:true},{text:"Third parties injured by an intoxicated patron",correct:true},{text:"Regulatory authorities",correct:true},{text:"Police",correct:true},{text:"Only the police",correct:false}],why:"Multiple parties can sue. The family of someone killed by a drunk driver could sue your venue.",type:"multiple"},
-            
-            // HOUSE POLICIES (Q133-146)
-            {id:133,category:"house",question:"What is a 'house policy'?",answer:"Venue-specific rules that comply with liquor laws, signed by staff",why:"House policies give you clear guidelines for your specific venue. Read and sign yours.",type:"text"},
-            {id:134,category:"house",question:"What should a venue's house policy include?",answer:"RSA practices, ID checking procedures, refusal procedures, incident reporting, responsible promotions",why:"A good house policy covers everything you might face. If it's not in there, ask management.",type:"text"},
-            {id:135,category:"house",question:"Which of these are examples of RESPONSIBLE house policies?",options:[{text:"Mandatory RSA training for all staff",correct:true},{text:"No shots after midnight",correct:true},{text:"Adequate lighting throughout venue",correct:true},{text:"Free water always available",correct:true},{text:"Food always available",correct:true},{text:"Glass bans in certain areas",correct:true},{text:"Two-for-one drink specials all night",correct:false}],why:"Good house policies make responsible service easier and reduce incidents.",type:"multiple"},
-            {id:136,category:"house",question:"Which of these are IRRESPONSIBLE practices that should be avoided?",options:[{text:"Two-for-one specials",correct:true},{text:"Skolling competitions",correct:true},{text:"Dim lighting (hard to see intoxication)",correct:true},{text:"Unlimited drinks packages",correct:true},{text:"Free drinks for birthdays (multiple)",correct:true},{text:"Offering food with drinks",correct:false}],why:"These practices encourage rapid consumption and make monitoring harder.",type:"multiple"},
-            {id:137,category:"house",question:"True or False: Staff should sign the venue's house policy to acknowledge they understand it.",answer:"True",why:"Your signature confirms you've read and understood the rules. It also protects you.",type:"text"},
-            {id:138,category:"house",question:"What must an incident register contain?",options:[{text:"ALL incidents (not just violent ones)",correct:true},{text:"Names of staff involved",correct:true},{text:"Date, time and location",correct:true},{text:"Actions taken",correct:true},{text:"Description of what happened",correct:true},{text:"Only violent incidents",correct:false}],why:"Complete records protect everyone. Even minor incidents should be logged.",type:"multiple"},
-            {id:139,category:"house",question:"According to the Sydney 'Making Your Night Out Safer' sign, what time is there no entry or re-entry after?",answer:"1:30 am",why:"Lockout laws restrict entry after certain times to reduce alcohol-related harm.",type:"text"},
-            {id:140,category:"house",question:"What should staff monitor in a venue?",options:[{text:"Intoxication levels of patrons",correct:true},{text:"Problem patrons",correct:true},{text:"Rowdy groups",correct:true},{text:"Entry points",correct:true},{text:"Refused patrons trying to re-enter",correct:true},{text:"Patrons' personal conversations",correct:false}],why:"Active monitoring prevents problems. Watch the crowd, not just your section.",type:"multiple"},
-            {id:141,category:"house",question:"Why is good lighting important in a venue?",answer:"It helps staff identify signs of intoxication and potential problems",why:"Dim lighting might look cool but makes it harder to do your job safely.",type:"text"},
-            {id:142,category:"house",question:"What is the purpose of drink limits or 'last drinks' policies?",answer:"To prevent rapid intoxication at closing time and allow patrons to sober up before leaving",why:"Last drinks 30 minutes before close gives people time to finish and sober up slightly.",type:"text"},
-            {id:143,category:"house",question:"What role does security play in RSA?",answer:"Controlling entry, monitoring behaviour, assisting with removals, preventing re-entry of refused patrons",why:"Security and bar staff work together. Communication between you is essential.",type:"text"},
-            {id:144,category:"house",question:"What is a 'crowd controller' licence?",answer:"A licence required for security personnel who control entry or behaviour at licensed venues",why:"Security must be licensed. Unlicensed security is illegal and puts everyone at risk.",type:"text"},
-            {id:145,category:"house",question:"True or False: A house policy can override state liquor laws.",answer:"False - House policies must comply with state laws, they cannot be less strict",why:"House policies can be stricter than the law, but never weaker. The law is the minimum standard.",type:"text"},
-            {id:146,category:"house",question:"What is the benefit of RSA for the community?",options:[{text:"Reduced alcohol-related violence",correct:true},{text:"Less noise and disturbance",correct:true},{text:"Safer streets",correct:true},{text:"Reduced pressure on police and hospitals",correct:true},{text:"More venues can open",correct:false}],why:"RSA benefits everyone - staff, patrons, and the broader community around venues.",type:"multiple"}
-        ];
+    <!-- ============ STUDY SCREEN ============ -->
+    <div class="study-screen" id="studyScreen">
+        <div class="top-bar">
+            <button class="back-btn" onclick="goBack()" aria-label="Go back to home">←</button>
+            <div class="progress-text">
+                <strong id="currentNum">1</strong> of <span id="totalNum">146</span>
+            </div>
+            <div class="topic-badge" id="topicBadge">All Topics</div>
+        </div>
         
-        // ============ STATE ============
-        let selectedLanguage = '';
-        let selectedTopic = 'all';
-        let filteredQuestions = [...questions];
-        let currentIndex = 0;
-        let isQuizMode = false;
-        let quizRevealed = false;
+        <div class="search-bar">
+            <div class="search-input-wrapper">
+                <span class="search-icon" aria-hidden="true">🔍</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Question number or keyword..." aria-label="Search questions">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search">×</button>
+            </div>
+        </div>
         
-        // ============ NAVIGATION ============
-        function startStudying() {
-            isQuizMode = false;
-            showStudyScreen();
+        <div class="topic-filter" id="topicFilter" role="tablist" aria-label="Filter by topic">
+            <button class="topic-btn active" data-topic="all" role="tab" aria-selected="true">All</button>
+            <button class="topic-btn" data-topic="drinks" role="tab" aria-selected="false">Standard Drinks</button>
+            <button class="topic-btn" data-topic="health" role="tab" aria-selected="false">Health & BAC</button>
+            <button class="topic-btn" data-topic="intox" role="tab" aria-selected="false">Intoxication</button>
+            <button class="topic-btn" data-topic="service" role="tab" aria-selected="false">Service & Refusal</button>
+            <button class="topic-btn" data-topic="minors" role="tab" aria-selected="false">Minors & ID</button>
+            <button class="topic-btn" data-topic="penalties" role="tab" aria-selected="false">Penalties</button>
+            <button class="topic-btn" data-topic="house" role="tab" aria-selected="false">House Policies</button>
+        </div>
+        
+        <div class="card-area" id="cardArea">
+            <div class="card-wrapper" id="cardWrapper">
+                <!-- Card populated by JS -->
+            </div>
+        </div>
+        
+        <div class="nav-area">
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" onclick="prevQuestion()" aria-label="Previous question">
+                    <span class="arrow">←</span> Previous
+                </button>
+                <button class="nav-btn" id="nextBtn" onclick="nextQuestion()" aria-label="Next question">
+                    Next <span class="arrow">→</span>
+                </button>
+            </div>
+            <div class="progress-bar-container" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+            <div class="swipe-hint">Swipe left or right to navigate</div>
+        </div>
+    </div>
+    
+</div>
+
+<script>
+    // ============ QUESTION DATA (146 Questions) ============
+    const questions = [
+        // STANDARD DRINKS (Q1-25)
+        {id:1,category:"drinks",question:"How many grams of pure alcohol does a standard drink contain?",answer:"10 grams",why:"This is the universal measure in Australia. It helps you calculate how much alcohol someone has consumed regardless of drink type.",type:"text"},
+        {id:2,category:"drinks",question:"What tool is used to measure standard drinks when pouring spirits?",answer:"A jigger (with 15ml and 30ml ends)",why:"A jigger ensures consistent pours. 30ml of standard spirits (40% ABV) = 1 standard drink. Eyeballing leads to over-serving.",type:"text"},
+        {id:3,category:"drinks",question:"How many standard drinks are in a 375ml stubby of full-strength beer (4.8% ABV)?",answer:"1.4 standard drinks",why:"Full-strength beer has more alcohol than people think. A 'couple of stubbies' is actually close to 3 standard drinks.",type:"text"},
+        {id:4,category:"drinks",question:"How many standard drinks are in a 375ml stubby of MID STRENGTH beer (3.5%)?",answer:"1.0 standard drink",why:"Mid-strength is a good option to suggest to patrons who want to pace themselves - it's exactly one standard drink per stubby.",type:"text"},
+        {id:5,category:"drinks",question:"How many standard drinks are in a 425ml schooner of FULL STRENGTH beer?",answer:"1.6 standard drinks",why:"A schooner is bigger than a pot/middy. Two schooners = over 3 standard drinks, which exceeds the first-hour driving guideline for men.",type:"text"},
+        {id:6,category:"drinks",question:"What is the alcohol percentage of full strength beer?",answer:"4.8%",why:"Knowing the standard percentages helps you quickly estimate standard drinks without looking at labels.",type:"text"},
+        {id:7,category:"drinks",question:"What is the alcohol percentage of mid strength beer?",answer:"3.5%",why:"Mid-strength is a responsible alternative to suggest. It's noticeably lower than full-strength (4.8%).",type:"text"},
+        {id:8,category:"drinks",question:"What is the alcohol percentage of low strength beer?",answer:"2.7%",why:"Low-strength beer lets people enjoy the social aspect of drinking while significantly reducing alcohol intake.",type:"text"},
+        {id:9,category:"drinks",question:"What is the typical alcohol percentage of wine?",answer:"11.5-13% (white wine 11.5%, red wine 13%, champagne 12%)",why:"Wine is much stronger than beer. A 'glass' at a restaurant is often 150-200ml, which is 1.5-2 standard drinks.",type:"text"},
+        {id:10,category:"drinks",question:"How much wine equals ONE standard drink?",answer:"100ml",why:"This is less than most wine glasses hold. A typical restaurant pour (150ml) is 1.5 standard drinks.",type:"text"},
+        {id:11,category:"drinks",question:"How much spirits/liqueur equals ONE standard drink?",answer:"30ml",why:"This is one end of a jigger. A 'double' is 60ml = 2 standard drinks. Cocktails with multiple spirits add up fast.",type:"text"},
+        {id:12,category:"drinks",question:"True or False: A standard drink is the same as a standard glass.",answer:"False - A 200ml glass of wine = 2 standard drinks",why:"This is a common misconception. Venues often serve more than one standard drink per glass, especially for wine.",type:"text"},
+        {id:13,category:"drinks",question:"Why should you ONLY use a free-flow spirit pourer with a jigger?",answer:"Without a jigger you cannot determine how much spirit you are pouring",why:"Free-pouring looks professional but leads to inconsistent (usually over) pours. Always measure to serve responsibly.",type:"text"},
+        {id:14,category:"drinks",question:"Calculate: 1 x 425ml full strength beer + 1 x 285ml mid strength beer = how many standard drinks?",answer:"2.4 standard drinks (1.6 + 0.8 = 2.4)",why:"Being able to quickly calculate a patron's consumption helps you monitor and prevent intoxication.",type:"text"},
+        {id:15,category:"drinks",question:"Calculate: 2 x 100ml red wine + 1 x 60ml port = how many standard drinks?",answer:"2.8 standard drinks (2 x 1.0 + 0.8 = 2.8)",why:"Port is fortified wine (higher alcohol). Even small amounts add significant standard drinks.",type:"text"},
+        {id:16,category:"drinks",question:"How many standard drinks are in a case (24 x 375ml) of MID STRENGTH beer?",answer:"24 standard drinks",why:"Each mid-strength stubby = 1 standard drink. This makes mid-strength easy to track.",type:"text"},
+        {id:17,category:"drinks",question:"Which of the following are equivalent to ONE standard drink?",options:[{text:"Full strength middy/pot (285ml)",correct:true},{text:"Wine (100ml)",correct:true},{text:"Spirits/liqueurs (30ml)",correct:true},{text:"Fortified wine (60ml)",correct:true},{text:"Light beer schooner (425ml)",correct:true},{text:"Low strength stubby (375ml)",correct:false}],why:"Memorise these equivalents - they're the foundation of tracking patron consumption.",type:"multiple"},
+        {id:18,category:"drinks",question:"Which of these are considered 'high risk drinks' that promote irresponsible consumption?",options:[{text:"Test Tubes",correct:true},{text:"Shooters",correct:true},{text:"Laybacks",correct:true},{text:"Yard Glasses",correct:true},{text:"Buckets",correct:true},{text:"Spray bottles/Backpacks",correct:true},{text:"Schooners",correct:false}],why:"These drinks encourage rapid consumption (sculling). Many venues ban them in their house policies.",type:"multiple"},
+        {id:19,category:"drinks",question:"By law in Australia, all bottles, cans and casks of liquor must state:",options:[{text:"The number of standard drinks",correct:true},{text:"The percentage of alcohol by volume",correct:true},{text:"The recommended daily intake",correct:false},{text:"The price per standard drink",correct:false}],why:"Labelling laws help consumers make informed choices. You can always check the label if unsure.",type:"multiple"},
+        {id:20,category:"drinks",question:"What is the alcohol percentage of standard spirits (vodka, rum, whiskey)?",answer:"40% ABV (some can be higher)",why:"Spirits are much stronger than beer (4.8%) or wine (12%). A small amount goes a long way.",type:"text"},
+        {id:21,category:"drinks",question:"How many standard drinks in a 750ml bottle of wine at 13% ABV?",answer:"Approximately 7.7 standard drinks",why:"A bottle of wine shared between two people is nearly 4 standard drinks each - above daily guidelines.",type:"text"},
+        {id:22,category:"drinks",question:"What is a 'nip' of spirits and how many standard drinks is it?",answer:"A nip is 30ml = 1 standard drink",why:"A 'nip' is the standard single measure. A 'double' is 60ml = 2 standard drinks.",type:"text"},
+        {id:23,category:"drinks",question:"How many standard drinks in a typical cocktail with 60ml of spirits?",answer:"At least 2 standard drinks (more if multiple spirits)",why:"Cocktails are deceptive - they taste nice but can contain 2-4 standard drinks per glass.",type:"text"},
+        {id:24,category:"drinks",question:"What is the alcohol percentage of fortified wines like port and sherry?",answer:"Around 17-20% ABV",why:"Fortified wines are stronger than regular wine. 60ml = 1 standard drink.",type:"text"},
+        {id:25,category:"drinks",question:"How many standard drinks in a 285ml pot/middy of full-strength beer?",answer:"1.1 standard drinks",why:"Pots/middies are a good option for pacing - close to one standard drink each.",type:"text"},
+        
+        // HEALTH & BAC (Q26-50)
+        {id:26,category:"health",question:"What does BAC stand for?",answer:"Blood Alcohol Concentration",why:"BAC measures the percentage of alcohol in your blood. In Australia, the legal driving limit is 0.05% BAC for most drivers.",type:"text"},
+        {id:27,category:"health",question:"How long does the liver take to process one standard drink?",answer:"Approximately one hour",why:"Coffee, food, or cold showers don't speed this up. Only time reduces BAC. This is why people can still be over the limit the morning after.",type:"text"},
+        {id:28,category:"health",question:"What is the legal driving BAC limit in Australia for most drivers?",answer:"0.05%",why:"Even at 0.05%, your reaction time and judgement are impaired. For learners, P-platers, and professional drivers it's 0.00%.",type:"text"},
+        {id:29,category:"health",question:"What is the ONLY thing that sobers someone up?",answer:"Time - nothing else works (not coffee, cold showers, fresh air, etc.)",why:"This is crucial to understand. No 'tricks' work. If someone is intoxicated, they need time to sober up.",type:"text"},
+        {id:30,category:"health",question:"What factors affect how quickly someone becomes intoxicated?",options:[{text:"Food in stomach",correct:true},{text:"Rate of drinking",correct:true},{text:"Body size",correct:true},{text:"Sun/heat exposure",correct:true},{text:"Health conditions",correct:true},{text:"Gender (women reach higher BAC)",correct:true},{text:"Medications",correct:true},{text:"Hair colour",correct:false}],why:"Everyone processes alcohol differently. A small person drinking quickly on an empty stomach will become intoxicated much faster.",type:"multiple"},
+        {id:31,category:"health",question:"Why do women typically reach higher BAC than men from the same amount of alcohol?",answer:"Women have less body water than men, so alcohol is more concentrated",why:"Women also generally have lower body weight and different enzyme levels. Don't assume same drinks = same intoxication.",type:"text"},
+        {id:32,category:"health",question:"At what BAC level does risk of death become significant?",answer:"0.40% and above - risk of CNS depression and death",why:"This is alcohol poisoning territory. Breathing and heart rate can stop. Call an ambulance immediately.",type:"text"},
+        {id:33,category:"health",question:"According to Australian alcohol guidelines, healthy adults should drink no more than:",options:[{text:"10 standard drinks per week",correct:true},{text:"4 standard drinks on any one day",correct:true},{text:"14 standard drinks per week",correct:false},{text:"6 standard drinks on any one day",correct:false}],why:"These guidelines were updated in 2020 - lower than before. Any drinking carries some health risk.",type:"multiple"},
+        {id:34,category:"health",question:"Who should NOT drink alcohol at all according to Australian guidelines?",options:[{text:"Pregnant women",correct:true},{text:"Women trying to become pregnant",correct:true},{text:"Breastfeeding women (safest option)",correct:true},{text:"People under 18",correct:true},{text:"Anyone over 65",correct:false}],why:"There is no known safe level of alcohol during pregnancy. It can cause permanent damage to the baby.",type:"multiple"},
+        {id:35,category:"health",question:"What is FASD?",answer:"Fetal Alcohol Spectrum Disorder - a range of lifelong disabilities caused by prenatal alcohol exposure",why:"FASD is 100% preventable by not drinking during pregnancy. There is no safe amount of alcohol during pregnancy.",type:"text"},
+        {id:36,category:"health",question:"For safe driving, how many standard drinks can a man have in the first hour?",answer:"2 standard drinks in the first hour, then 1 standard drink per hour after",why:"This is a GUIDE only - individual factors mean some people will exceed 0.05% BAC with this amount.",type:"text"},
+        {id:37,category:"health",question:"For safe driving, how many standard drinks can a woman have in the first hour?",answer:"1 standard drink in the first hour, then 1 standard drink per hour after",why:"Women generally process alcohol slower and reach higher BAC from the same amount.",type:"text"},
+        {id:38,category:"health",question:"What are SHORT-TERM effects of alcohol?",options:[{text:"Sleep disruptions",correct:true},{text:"Fatigue",correct:true},{text:"Hangovers and headaches",correct:true},{text:"Impaired judgement",correct:true},{text:"Cirrhosis of the liver",correct:false}],why:"Short-term effects happen during or soon after drinking. They're warning signs of overdoing it.",type:"multiple"},
+        {id:39,category:"health",question:"What are LONG-TERM effects of excessive alcohol consumption?",options:[{text:"Liver cirrhosis",correct:true},{text:"Stroke and heart disease",correct:true},{text:"Mental illness and depression",correct:true},{text:"Cancer (mouth, throat, liver)",correct:true},{text:"Brain damage",correct:true},{text:"Hangovers",correct:false}],why:"Long-term heavy drinking causes serious, often irreversible damage to multiple organs.",type:"multiple"},
+        {id:40,category:"health",question:"How does eating food affect alcohol absorption?",answer:"Food slows alcohol absorption, reducing peak BAC",why:"Always encourage patrons to eat. An empty stomach means faster intoxication.",type:"text"},
+        {id:41,category:"health",question:"Why does drinking in the sun or heat increase intoxication risk?",answer:"Dehydration accelerates alcohol's effects, and heat masks symptoms of intoxication",why:"Summer drinking and outdoor events need extra monitoring. People may not realise how affected they are.",type:"text"},
+        {id:42,category:"health",question:"What is 'binge drinking'?",answer:"Consuming more than 4 standard drinks on a single occasion",why:"Binge drinking significantly increases risk of accidents, violence, and alcohol poisoning.",type:"text"},
+        {id:43,category:"health",question:"How does mixing alcohol with medications affect the body?",answer:"It can increase or alter the effects of both, potentially causing dangerous reactions",why:"Never assume medications are safe with alcohol. Even common painkillers can interact badly.",type:"text"},
+        {id:44,category:"health",question:"What happens to BAC after you stop drinking?",answer:"BAC continues to rise for 30-60 minutes after last drink, then slowly decreases",why:"Someone who seems okay can become more intoxicated after they stop drinking. Keep monitoring.",type:"text"},
+        {id:45,category:"health",question:"Why is the 0.05% BAC limit important?",answer:"Even at this level, reaction time, vision, and judgement are impaired",why:"0.05% isn't 'safe' - it's the legal limit. Impairment begins with the first drink.",type:"text"},
+        {id:46,category:"health",question:"What is alcohol poisoning?",answer:"A potentially fatal result of drinking large amounts in a short time, causing the body to shut down",why:"Signs include unconsciousness, vomiting while unconscious, slow/irregular breathing, and seizures. Call 000 immediately.",type:"text"},
+        {id:47,category:"health",question:"What should you do if someone passes out from drinking?",answer:"Place them in recovery position, stay with them, call 000 if breathing is slow or irregular",why:"Never leave an unconscious drunk person alone. They can choke on vomit or stop breathing.",type:"text"},
+        {id:48,category:"health",question:"According to venue breath testing signs, are readings accepted by police or courts?",answer:"NO - venue breath tests are not accurate and your BAC can rise for 1+ hour after last drink",why:"Breath testing machines at venues are for guidance only. They can give people false confidence.",type:"text"},
+        {id:49,category:"health",question:"What effect does alcohol have on the brain?",answer:"It's a depressant that slows brain function, affecting judgement, coordination, and reaction time",why:"Alcohol isn't a stimulant - it reduces inhibitions by slowing the parts of the brain that control behaviour.",type:"text"},
+        {id:50,category:"health",question:"How does age affect alcohol processing?",answer:"Older adults process alcohol slower and are more susceptible to its effects",why:"As we age, body water decreases and liver function slows. Elderly patrons may become intoxicated faster.",type:"text"},
+        
+        // INTOXICATION (Q51-75)
+        {id:51,category:"intox",question:"What does 'unduly intoxicated' mean?",answer:"A person's mental or physical faculties are impaired by alcohol to a noticeable degree",why:"This is the legal threshold for refusing service. You must stop serving BEFORE they reach this point.",type:"text"},
+        {id:52,category:"intox",question:"What are physical signs of intoxication?",options:[{text:"Slurred speech",correct:true},{text:"Unsteady on feet",correct:true},{text:"Bloodshot/glazed eyes",correct:true},{text:"Spilling drinks",correct:true},{text:"Difficulty with fine motor skills",correct:true},{text:"Drowsiness",correct:true},{text:"Wearing sunglasses inside",correct:false}],why:"Look for multiple signs - one sign alone could have other explanations (medical condition, disability).",type:"multiple"},
+        {id:53,category:"intox",question:"What are behavioural signs of intoxication?",options:[{text:"Loud or boisterous behaviour",correct:true},{text:"Aggressive or argumentative",correct:true},{text:"Inappropriate comments",correct:true},{text:"Loss of inhibitions",correct:true},{text:"Drinking faster than normal",correct:true},{text:"Overly friendly/affectionate",correct:true},{text:"Sitting quietly alone",correct:false}],why:"Behaviour changes often appear before physical signs. Someone can be intoxicated while still standing steadily.",type:"multiple"},
+        {id:54,category:"intox",question:"True or False: Slurred speech automatically means someone is intoxicated.",answer:"False - You must establish reasonable belief based on multiple signs, not discriminate based on one factor",why:"Slurred speech could be a medical condition, disability, or accent. Look for multiple indicators.",type:"text"},
+        {id:55,category:"intox",question:"What is 'reasonable belief' in relation to intoxication?",answer:"A conclusion based on observable signs and behaviour, not assumptions or stereotypes",why:"You need evidence to refuse service - not just a gut feeling. Document what you observed.",type:"text"},
+        {id:56,category:"intox",question:"Why should you monitor patrons throughout their visit?",answer:"Intoxication develops over time - someone who seemed fine earlier may become intoxicated",why:"Don't just check at entry. Regular monitoring lets you intervene before problems develop.",type:"text"},
+        {id:57,category:"intox",question:"What should you do if you notice early signs of intoxication?",answer:"Slow service, offer food and water, switch to low-alcohol options",why:"Early intervention is easier than dealing with someone who is already unduly intoxicated.",type:"text"},
+        {id:58,category:"intox",question:"Can you serve someone who arrived at the venue already intoxicated?",answer:"No - it's illegal to serve anyone who is intoxicated, regardless of where they became intoxicated",why:"Entry should be refused to intoxicated people. If they slip through, do not serve them.",type:"text"},
+        {id:59,category:"intox",question:"What is 'secondary supply' of alcohol?",answer:"When someone buys alcohol for another person who cannot legally be served",why:"Watch for patrons buying drinks for intoxicated friends or minors. You can refuse these sales.",type:"text"},
+        {id:60,category:"intox",question:"What factors might make someone APPEAR intoxicated when they're not?",options:[{text:"Medical conditions (diabetes, stroke)",correct:true},{text:"Disabilities",correct:true},{text:"Fatigue/exhaustion",correct:true},{text:"Medication side effects",correct:true},{text:"Language barriers",correct:true},{text:"Drinking water",correct:false}],why:"Don't discriminate. If unsure, politely speak to the person to assess their state.",type:"multiple"},
+        {id:61,category:"intox",question:"How does drinking speed affect intoxication?",answer:"Drinking faster overwhelms the liver's ability to process alcohol, causing rapid intoxication",why:"Sculling, shots, and drinking games cause fast intoxication. Slow service helps prevent this.",type:"text"},
+        {id:62,category:"intox",question:"What is the 'sobering up' myth?",answer:"The false belief that coffee, food, fresh air, or cold water can speed up sobering",why:"Only time works. These things might make someone feel more alert but don't reduce BAC.",type:"text"},
+        {id:63,category:"intox",question:"Why do intoxicated people often not realise how drunk they are?",answer:"Alcohol impairs judgement and self-awareness - they genuinely believe they're fine",why:"Don't rely on patrons to self-regulate. Your professional assessment matters more than their opinion.",type:"text"},
+        {id:64,category:"intox",question:"What stages does intoxication typically progress through?",answer:"Relaxed → Loud/Talkative → Uncoordinated → Confused → Unconscious",why:"Recognise early stages and intervene. By the uncoordinated stage, you're already too late.",type:"text"},
+        {id:65,category:"intox",question:"How does mixing alcohol with energy drinks mask intoxication?",answer:"Caffeine makes people feel more alert and awake despite being intoxicated",why:"Someone drinking vodka Red Bulls may seem fine but have a dangerously high BAC.",type:"text"},
+        {id:66,category:"intox",question:"What is 'alcohol tolerance'?",answer:"When regular drinkers need more alcohol to feel the same effects",why:"High tolerance doesn't mean they're less impaired - their BAC is still elevated. Don't be fooled.",type:"text"},
+        {id:67,category:"intox",question:"How does drinking on an empty stomach affect intoxication?",answer:"Alcohol absorbs much faster, leading to rapid intoxication",why:"Always encourage food. Ask if they've eaten - it's a responsible service practice.",type:"text"},
+        {id:68,category:"intox",question:"What should you watch for with groups of drinkers?",answer:"Peer pressure to drink more, rounds that speed up consumption, competitive drinking",why:"Groups can escalate quickly. Monitor the whole table, not just individuals.",type:"text"},
+        {id:69,category:"intox",question:"What is 'drug-affected' behaviour?",answer:"Signs of impairment from substances other than alcohol, or combined with alcohol",why:"Drug-affected people must also be refused service. Mixing drugs and alcohol is extremely dangerous.",type:"text"},
+        {id:70,category:"intox",question:"Signs that someone may be drug-affected include:",options:[{text:"Dilated or constricted pupils",correct:true},{text:"Sweating despite cool temperature",correct:true},{text:"Teeth grinding or jaw clenching",correct:true},{text:"Hyperactivity or extreme lethargy",correct:true},{text:"Paranoid behaviour",correct:true},{text:"Having a quiet conversation",correct:false}],why:"Drug symptoms differ from alcohol. If you suspect drug use, do not serve and monitor closely.",type:"multiple"},
+        {id:71,category:"intox",question:"Can you be held liable if an intoxicated patron you served injures someone?",answer:"Yes - duty of care extends to third parties who may be harmed by your patron",why:"If you serve someone who then crashes their car, you could be partly responsible.",type:"text"},
+        {id:72,category:"intox",question:"What is the best time to refuse service?",answer:"BEFORE someone becomes unduly intoxicated - when you notice early warning signs",why:"Prevention is better than dealing with an aggressive drunk person. Intervene early.",type:"text"},
+        {id:73,category:"intox",question:"How should you assess a regular patron who 'always drinks this much'?",answer:"The same as anyone else - tolerance doesn't make intoxication legal or safe to serve",why:"Don't let familiarity cloud your judgement. The law applies equally to regulars.",type:"text"},
+        {id:74,category:"intox",question:"What environmental factors in a venue can mask intoxication?",options:[{text:"Dim lighting",correct:true},{text:"Loud music (hard to hear slurred speech)",correct:true},{text:"Crowded spaces (hard to see unsteadiness)",correct:true},{text:"Seating (hides unsteady walking)",correct:true},{text:"Good air conditioning",correct:false}],why:"Venues sometimes unintentionally make it harder to spot intoxication. Be extra vigilant.",type:"multiple"},
+        {id:75,category:"intox",question:"What is 'pre-loading' and why is it a problem?",answer:"Drinking heavily before arriving at a venue - people may already be intoxicated on arrival",why:"Pre-loaders are already on their way to intoxication. Extra care needed at entry.",type:"text"},
+        
+        // SERVICE & REFUSAL (Q76-100)
+        {id:76,category:"service",question:"When refusing service to an intoxicated person, you should:",options:[{text:"Be polite and respectful",correct:true},{text:"Speak to them away from others if possible",correct:true},{text:"Explain the reason clearly",correct:true},{text:"Offer alternatives (water, food, taxi)",correct:true},{text:"Involve management if needed",correct:true},{text:"Argue loudly so everyone knows",correct:false}],why:"A calm, professional refusal reduces conflict and maintains dignity for everyone.",type:"multiple"},
+        {id:77,category:"service",question:"What is 'duty of care'?",answer:"The legal obligation to take reasonable steps to ensure the safety of patrons and others",why:"If someone you served gets hurt or hurts someone else, you could be liable if you didn't fulfil your duty of care.",type:"text"},
+        {id:78,category:"service",question:"Can you serve someone who is already intoxicated if they promise to take a taxi home?",answer:"No",why:"How they get home is irrelevant. Serving an intoxicated person is illegal regardless of their transport plans.",type:"text"},
+        {id:79,category:"service",question:"What alternatives should you offer when refusing service?",options:[{text:"Water",correct:true},{text:"Soft drinks",correct:true},{text:"Food",correct:true},{text:"Coffee (won't sober them up but gives them time)",correct:true},{text:"Help arranging transport home",correct:true},{text:"A different type of alcohol",correct:false}],why:"Offering alternatives shows you care about them, not just refusing service.",type:"multiple"},
+        {id:80,category:"service",question:"What is 'Vicarious Liability'?",answer:"When an employer can be held legally responsible for the actions of their employees",why:"If you break RSA laws, your employer may also be fined. Everyone has skin in the game.",type:"text"},
+        {id:81,category:"service",question:"Name responsible service practices:",options:[{text:"Not serving intoxicated patrons",correct:true},{text:"Checking IDs",correct:true},{text:"Offering food and water",correct:true},{text:"Promoting low-alcohol options",correct:true},{text:"Monitoring consumption",correct:true},{text:"Serving drinks quickly to avoid queues",correct:false}],why:"These aren't just rules - they're your protection. Following RSA practices protects you, your venue, and patrons.",type:"multiple"},
+        {id:82,category:"service",question:"What are EFFECTIVE RSA strategies?",options:[{text:"Offering food",correct:true},{text:"Providing water/non-alcoholic drinks",correct:true},{text:"Talking to the patron's friends for help",correct:true},{text:"Slowing service",correct:true},{text:"Happy hour specials",correct:false},{text:"Refilling drinks proactively",correct:false}],why:"These strategies help prevent intoxication rather than just reacting to it.",type:"multiple"},
+        {id:83,category:"service",question:"What should you do if a refused patron becomes aggressive?",answer:"Stay calm, maintain distance, call for backup/security, don't argue or get physical",why:"Your safety comes first. Don't escalate. Get help from colleagues or security.",type:"text"},
+        {id:84,category:"service",question:"Who else should be informed when you refuse service?",answer:"Other bar staff, security, and management",why:"If they don't know, the patron might just get served by someone else.",type:"text"},
+        {id:85,category:"service",question:"How should refusals be documented?",answer:"In the incident register with time, description of patron, signs observed, and action taken",why:"Documentation protects you and the venue if there's ever a complaint or legal issue.",type:"text"},
+        {id:86,category:"service",question:"Can you refuse service without giving a reason?",answer:"Yes, but you cannot refuse based on discriminatory reasons (race, gender, disability, etc.)",why:"You have the right to refuse, but it must be for legitimate RSA reasons, not discrimination.",type:"text"},
+        {id:87,category:"service",question:"What is the purpose of 'cutting off' a patron?",answer:"To prevent them from becoming unduly intoxicated or causing harm",why:"It's harm prevention. You're protecting them, other patrons, and yourself.",type:"text"},
+        {id:88,category:"service",question:"What phrases can you use when refusing service?",answer:"'I can see you've had enough', 'How about some water or food?', 'I can't serve you more alcohol tonight'",why:"Direct but polite language works best. Don't apologise excessively or be aggressive.",type:"text"},
+        {id:89,category:"service",question:"Why should you avoid over-apologising when refusing service?",answer:"It can seem insincere and may invite argument about whether refusal is necessary",why:"Be firm and clear. One apology is enough - then move to solutions.",type:"text"},
+        {id:90,category:"service",question:"What is 'responsible service' in takeaway/bottle shop context?",answer:"Same principles - don't sell to intoxicated people, check ID for minors, refuse secondary supply",why:"RSA applies wherever alcohol is sold, not just bars and clubs.",type:"text"},
+        {id:91,category:"service",question:"How should staff stay updated on RSA requirements?",options:[{text:"Visit state regulatory website regularly",correct:true},{text:"Subscribe to industry newsletters",correct:true},{text:"Attend refresher training",correct:true},{text:"Read venue house policy updates",correct:true},{text:"Rely only on original training from years ago",correct:false}],why:"Laws and best practices change. Staying current is part of being a professional.",type:"multiple"},
+        {id:92,category:"service",question:"What should you do if a patron disputes your assessment of their intoxication?",answer:"Stay calm, explain you're following the law, offer alternatives, involve management if needed",why:"You don't need their agreement. Your professional judgement is what counts legally.",type:"text"},
+        {id:93,category:"service",question:"What is 'service to vulnerable persons'?",answer:"Being extra careful with people who may be more affected by alcohol (elderly, small, on medication)",why:"Some people are more vulnerable to alcohol's effects. Adjust your service accordingly.",type:"text"},
+        {id:94,category:"service",question:"Why is free water important for responsible service?",answer:"It helps patrons stay hydrated, slows drinking, and provides a no-cost alternative",why:"Water should always be available for free. It's a simple but effective RSA tool.",type:"text"},
+        {id:95,category:"service",question:"What should a venue do to help patrons get home safely?",options:[{text:"Display taxi phone numbers",correct:true},{text:"Provide public transport information",correct:true},{text:"Offer to call a taxi",correct:true},{text:"Have a courtesy bus (some venues)",correct:true},{text:"Let them drive themselves",correct:false}],why:"Getting patrons home safely is part of duty of care. Make it easy for them to make good choices.",type:"multiple"},
+        {id:96,category:"service",question:"What is 'drink spiking' and what should you watch for?",answer:"Adding substances to drinks without consent - watch for people interfering with others' drinks",why:"Drink spiking is a crime. Be alert to suspicious behaviour around unattended drinks.",type:"text"},
+        {id:97,category:"service",question:"What should you do if you suspect a drink has been spiked?",answer:"Don't let the person drink it, notify security/management, assist the potential victim, keep the drink as evidence",why:"Act quickly but calmly. The victim's safety is the priority.",type:"text"},
+        {id:98,category:"service",question:"Who can legally serve alcohol in a licensed venue?",answer:"Only people who hold a current RSA certificate (requirements vary by state)",why:"RSA certification is mandatory. You cannot serve alcohol without valid certification.",type:"text"},
+        {id:99,category:"service",question:"How long is RSA certification valid?",answer:"Varies by state - typically 3-5 years before refresher/renewal required",why:"Check your state's requirements. Keep your certification current.",type:"text"},
+        {id:100,category:"service",question:"What is the primary goal of RSA?",answer:"Harm minimisation - reducing harm to individuals, families, and the community from alcohol",why:"RSA isn't about stopping fun - it's about preventing the serious harms alcohol can cause.",type:"text"},
+        
+        // MINORS & ID (Q101-120)
+        {id:101,category:"minors",question:"What is the legal drinking age in Australia?",answer:"18 years old",why:"This applies everywhere in Australia. There's no 'drinking with parents' exception in licensed venues.",type:"text"},
+        {id:102,category:"minors",question:"What forms of ID are acceptable to prove age?",options:[{text:"Current driver licence",correct:true},{text:"Australian or foreign passport",correct:true},{text:"Proof of age card",correct:true},{text:"Digital driver licence (varies by state)",correct:true},{text:"Keypass card",correct:true},{text:"Student ID card",correct:false},{text:"Birth certificate",correct:false}],why:"These are the ONLY acceptable forms. Student IDs and birth certificates don't prove identity with a photo.",type:"multiple"},
+        {id:103,category:"minors",question:"At what age should you ask someone for ID?",answer:"If they appear under 25 years old",why:"When in doubt, check. It's better to ask a 30-year-old than serve a 17-year-old.",type:"text"},
+        {id:104,category:"minors",question:"What should you check when verifying an ID?",options:[{text:"Photo matches the person",correct:true},{text:"Date of birth shows 18+",correct:true},{text:"Security features (holograms, etc.)",correct:true},{text:"Card hasn't expired",correct:true},{text:"Signs of tampering",correct:true},{text:"The person's outfit",correct:false}],why:"Check all elements - don't just glance at the birthdate. Feel the card for tampering.",type:"multiple"},
+        {id:105,category:"minors",question:"Why are minors considered 'at risk' for alcohol-related harm?",options:[{text:"Brain still developing until mid-20s",correct:true},{text:"More susceptible to peer pressure",correct:true},{text:"Less experience with alcohol effects",correct:true},{text:"Lower body weight typically",correct:true},{text:"They have more money to spend",correct:false}],why:"Young brains are particularly vulnerable to alcohol damage. The law protects them for good reason.",type:"multiple"},
+        {id:106,category:"minors",question:"Which minors are EXEMPT and may be allowed in licensed areas?",options:[{text:"Minors employed at the venue",correct:true},{text:"Minors with a responsible adult for a meal",correct:true},{text:"Minors attending a function (e.g. wedding)",correct:true},{text:"Any minor who looks mature",correct:false}],why:"Exemptions have strict conditions. 'Looking mature' is never an exemption.",type:"multiple"},
+        {id:107,category:"minors",question:"Who is considered a 'responsible adult' for a minor in a licensed venue?",options:[{text:"Parent",correct:true},{text:"Step-parent",correct:true},{text:"Guardian",correct:true},{text:"Spouse or de-facto partner (if minor is married)",correct:true},{text:"Older sibling (over 18)",correct:false},{text:"Any adult friend",correct:false}],why:"The definition is specific. An older friend or sibling doesn't qualify.",type:"multiple"},
+        {id:108,category:"minors",question:"At what age can minors work in a licensed venue?",answer:"16+ in most states (with restrictions on duties)",why:"Young workers can do certain tasks but usually cannot serve alcohol unsupervised.",type:"text"},
+        {id:109,category:"minors",question:"What should you do if someone presents a suspected false ID in QLD or NT?",answer:"You MUST confiscate the ID",why:"QLD and NT have mandatory confiscation. Check your state's requirements.",type:"text"},
+        {id:110,category:"minors",question:"What should you do if someone presents a suspected false ID in NSW?",answer:"You CANNOT confiscate it - refuse service and ask them to leave",why:"NSW doesn't allow confiscation. Just refuse and report if needed.",type:"text"},
+        {id:111,category:"minors",question:"What should you do if someone presents a suspected false ID in VIC, WA, TAS, SA, or ACT?",answer:"You MAY confiscate the ID (optional, not mandatory)",why:"You have the power but not the obligation. Use your judgement.",type:"text"},
+        {id:112,category:"minors",question:"What is the penalty for serving a minor?",answer:"Up to $20,000+ for individuals, higher for licensees (varies by state)",why:"This can be YOU personally, not just the venue. It can also mean losing your RSA certification.",type:"text"},
+        {id:113,category:"minors",question:"According to the NSW poster, what is the fine for a minor who illegally enters or obtains alcohol?",answer:"$2,200",why:"Minors also face penalties - they can be fined for attempting to buy alcohol.",type:"text"},
+        {id:114,category:"minors",question:"What is 'secondary supply' to a minor?",answer:"When an adult purchases alcohol and gives it to a minor",why:"Watch for adults buying drinks then passing them to young-looking people in their group.",type:"text"},
+        {id:115,category:"minors",question:"Can a minor consume alcohol in a licensed venue if their parent gives it to them?",answer:"No - minors cannot be SUPPLIED alcohol in licensed venues (different rules apply in private homes)",why:"Licensed venue rules are different from home. Parents can't give alcohol to minors in pubs/clubs.",type:"text"},
+        {id:116,category:"minors",question:"What areas of a licensed venue can minors enter?",answer:"Dining areas with a responsible adult, some function areas - NOT bars or gaming areas",why:"Different parts of venues have different rules. Know your venue's licensed areas.",type:"text"},
+        {id:117,category:"minors",question:"What time must minors leave a licensed venue?",answer:"Usually by a specified time (often 10pm or midnight) - varies by licence and state",why:"Even with a responsible adult, minors can't stay all night. Check your venue's conditions.",type:"text"},
+        {id:118,category:"minors",question:"How can you calculate someone's age from their date of birth?",answer:"Subtract birth year from current year, adjust if birthday hasn't occurred yet this year",why:"Practice this calculation. Under pressure, it's easy to make mistakes.",type:"text"},
+        {id:119,category:"minors",question:"What are signs an ID might be fake or tampered with?",options:[{text:"Photo looks different from the person",correct:true},{text:"Bumpy or uneven surface",correct:true},{text:"Discoloration around text or photo",correct:true},{text:"Missing security features",correct:true},{text:"The card feels too thick or thin",correct:true},{text:"Person is nervous",correct:false}],why:"Feel the card, check the edges, look for holograms. Fake IDs are often poor quality.",type:"multiple"},
+        {id:120,category:"minors",question:"If you accidentally serve a minor, what should you do?",answer:"Stop service immediately, remove the drink if possible, notify management, document the incident",why:"Act quickly to minimise harm. Honest mistakes should still be reported and documented.",type:"text"},
+        
+        // PENALTIES (Q121-132)
+        {id:121,category:"penalties",question:"Can you be held personally responsible for serving an intoxicated person?",answer:"Yes - both the individual server AND the licensee can be fined",why:"This isn't just a venue problem. You personally can be fined thousands and lose your certification.",type:"text"},
+        {id:122,category:"penalties",question:"In QLD, what is the maximum fine for staff who serve an intoxicated person?",answer:"$11,500",why:"That's a year's savings for many people. The consequences are serious.",type:"text"},
+        {id:123,category:"penalties",question:"According to the Victoria poster, what is the penalty for a licensee who supplies liquor to an intoxicated person?",answer:"Exceeds $19,000",why:"Licensees face even higher penalties than staff. They're responsible for the whole venue.",type:"text"},
+        {id:124,category:"penalties",question:"In QLD, how long can a person be barred from a venue?",answer:"Indefinitely, or for a specified period - group venue bans are also possible",why:"Barring protects everyone. Persistent troublemakers can be banned from multiple venues.",type:"text"},
+        {id:125,category:"penalties",question:"Which people can be removed from a licensed venue in ALL states?",options:[{text:"Non-exempt minors",correct:true},{text:"Intoxicated persons",correct:true},{text:"Persons aiding supply to prohibited persons",correct:true},{text:"Disorderly persons",correct:true},{text:"Drug-affected persons",correct:true},{text:"People who haven't bought a drink",correct:false}],why:"These removal powers are consistent across Australia. You have the right to remove these people.",type:"multiple"},
+        {id:126,category:"penalties",question:"According to the Victoria poster, what is the penalty for a drunk person who refuses to leave?",answer:"Exceeds $8,000",why:"Patrons also face penalties. You can remind them of this when asking them to leave.",type:"text"},
+        {id:127,category:"penalties",question:"In ACT, what is the fine for a patron who abuses staff?",answer:"$220",why:"Staff don't have to tolerate abuse. Patrons can be fined for their behaviour.",type:"text"},
+        {id:128,category:"penalties",question:"What can happen to a venue's licence for repeated RSA breaches?",answer:"Suspension, additional conditions, or complete cancellation of the licence",why:"The venue could lose its right to operate. Everyone's job depends on compliance.",type:"text"},
+        {id:129,category:"penalties",question:"According to the SA poster, what is the on-the-spot fine amount?",answer:"$550",why:"On-the-spot fines are immediate - no court required. They add up quickly for repeat offences.",type:"text"},
+        {id:130,category:"penalties",question:"What are the consequences of losing your RSA certification?",answer:"You cannot legally work serving alcohol in any licensed venue",why:"This affects your entire career in hospitality. Protect your certification.",type:"text"},
+        {id:131,category:"penalties",question:"Can criminal charges result from RSA breaches?",answer:"Yes - in serious cases involving harm, criminal charges are possible",why:"Beyond fines, you could face criminal prosecution if your breach leads to serious harm.",type:"text"},
+        {id:132,category:"penalties",question:"Who can bring legal action against a venue for alcohol-related harm?",options:[{text:"The patron who was served",correct:true},{text:"Third parties injured by an intoxicated patron",correct:true},{text:"Regulatory authorities",correct:true},{text:"Police",correct:true},{text:"Only the police",correct:false}],why:"Multiple parties can sue. The family of someone killed by a drunk driver could sue your venue.",type:"multiple"},
+        
+        // HOUSE POLICIES (Q133-146)
+        {id:133,category:"house",question:"What is a 'house policy'?",answer:"Venue-specific rules that comply with liquor laws, signed by staff",why:"House policies give you clear guidelines for your specific venue. Read and sign yours.",type:"text"},
+        {id:134,category:"house",question:"What should a venue's house policy include?",answer:"RSA practices, ID checking procedures, refusal procedures, incident reporting, responsible promotions",why:"A good house policy covers everything you might face. If it's not in there, ask management.",type:"text"},
+        {id:135,category:"house",question:"Which of these are examples of RESPONSIBLE house policies?",options:[{text:"Mandatory RSA training for all staff",correct:true},{text:"No shots after midnight",correct:true},{text:"Adequate lighting throughout venue",correct:true},{text:"Free water always available",correct:true},{text:"Food always available",correct:true},{text:"Glass bans in certain areas",correct:true},{text:"Two-for-one drink specials all night",correct:false}],why:"Good house policies make responsible service easier and reduce incidents.",type:"multiple"},
+        {id:136,category:"house",question:"Which of these are IRRESPONSIBLE practices that should be avoided?",options:[{text:"Two-for-one specials",correct:true},{text:"Skolling competitions",correct:true},{text:"Dim lighting (hard to see intoxication)",correct:true},{text:"Unlimited drinks packages",correct:true},{text:"Free drinks for birthdays (multiple)",correct:true},{text:"Offering food with drinks",correct:false}],why:"These practices encourage rapid consumption and make monitoring harder.",type:"multiple"},
+        {id:137,category:"house",question:"True or False: Staff should sign the venue's house policy to acknowledge they understand it.",answer:"True",why:"Your signature confirms you've read and understood the rules. It also protects you.",type:"text"},
+        {id:138,category:"house",question:"What must an incident register contain?",options:[{text:"ALL incidents (not just violent ones)",correct:true},{text:"Names of staff involved",correct:true},{text:"Date, time and location",correct:true},{text:"Actions taken",correct:true},{text:"Description of what happened",correct:true},{text:"Only violent incidents",correct:false}],why:"Complete records protect everyone. Even minor incidents should be logged.",type:"multiple"},
+        {id:139,category:"house",question:"According to the Sydney 'Making Your Night Out Safer' sign, what time is there no entry or re-entry after?",answer:"1:30 am",why:"Lockout laws restrict entry after certain times to reduce alcohol-related harm.",type:"text"},
+        {id:140,category:"house",question:"What should staff monitor in a venue?",options:[{text:"Intoxication levels of patrons",correct:true},{text:"Problem patrons",correct:true},{text:"Rowdy groups",correct:true},{text:"Entry points",correct:true},{text:"Refused patrons trying to re-enter",correct:true},{text:"Patrons' personal conversations",correct:false}],why:"Active monitoring prevents problems. Watch the crowd, not just your section.",type:"multiple"},
+        {id:141,category:"house",question:"Why is good lighting important in a venue?",answer:"It helps staff identify signs of intoxication and potential problems",why:"Dim lighting might look cool but makes it harder to do your job safely.",type:"text"},
+        {id:142,category:"house",question:"What is the purpose of drink limits or 'last drinks' policies?",answer:"To prevent rapid intoxication at closing time and allow patrons to sober up before leaving",why:"Last drinks 30 minutes before close gives people time to finish and sober up slightly.",type:"text"},
+        {id:143,category:"house",question:"What role does security play in RSA?",answer:"Controlling entry, monitoring behaviour, assisting with removals, preventing re-entry of refused patrons",why:"Security and bar staff work together. Communication between you is essential.",type:"text"},
+        {id:144,category:"house",question:"What is a 'crowd controller' licence?",answer:"A licence required for security personnel who control entry or behaviour at licensed venues",why:"Security must be licensed. Unlicensed security is illegal and puts everyone at risk.",type:"text"},
+        {id:145,category:"house",question:"True or False: A house policy can override state liquor laws.",answer:"False - House policies must comply with state laws, they cannot be less strict",why:"House policies can be stricter than the law, but never weaker. The law is the minimum standard.",type:"text"},
+        {id:146,category:"house",question:"What is the benefit of RSA for the community?",options:[{text:"Reduced alcohol-related violence",correct:true},{text:"Less noise and disturbance",correct:true},{text:"Safer streets",correct:true},{text:"Reduced pressure on police and hospitals",correct:true},{text:"More venues can open",correct:false}],why:"RSA benefits everyone - staff, patrons, and the broader community around venues.",type:"multiple"}
+    ];
+    
+    // ============ STATE ============
+    let selectedLanguage = '';
+    let selectedTopic = 'all';
+    let filteredQuestions = [...questions];
+    let currentIndex = 0;
+    let isQuizMode = false;
+    let quizRevealed = false;
+    
+    // ============ NAVIGATION ============
+    function startStudying() {
+        isQuizMode = false;
+        showStudyScreen();
+    }
+    
+    function startQuiz() {
+        isQuizMode = true;
+        showStudyScreen();
+    }
+    
+    function showStudyScreen() {
+        document.getElementById('landingScreen').classList.add('hidden');
+        document.getElementById('studyScreen').classList.add('active');
+        filterQuestions();
+        renderCard();
+    }
+    
+    function goBack() {
+        document.getElementById('studyScreen').classList.remove('active');
+        document.getElementById('landingScreen').classList.remove('hidden');
+    }
+    
+    // ============ FILTERING ============
+    function filterQuestions() {
+        if (selectedTopic === 'all') {
+            filteredQuestions = [...questions];
+        } else {
+            filteredQuestions = questions.filter(q => q.category === selectedTopic);
         }
-        
-        function startQuiz() {
-            isQuizMode = true;
-            showStudyScreen();
-        }
-        
-        function showStudyScreen() {
-            document.getElementById('landingScreen').classList.add('hidden');
-            document.getElementById('studyScreen').classList.add('active');
+        currentIndex = 0;
+        updateProgress();
+    }
+    
+    // Topic filter click handlers
+    document.querySelectorAll('.topic-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.topic-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
+            selectedTopic = btn.dataset.topic;
+            document.getElementById('topicBadge').textContent = btn.textContent;
             filterQuestions();
             renderCard();
+        });
+    });
+    
+    // Language selector
+    document.getElementById('languageSelect').addEventListener('change', (e) => {
+        selectedLanguage = e.target.value;
+        renderCard();
+    });
+    
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    
+    searchInput.addEventListener('input', (e) => {
+        const value = e.target.value.trim();
+        searchClear.classList.toggle('visible', value.length > 0);
+        
+        if (value === '') {
+            filterQuestions();
+            renderCard();
+            return;
         }
         
-        function goBack() {
-            document.getElementById('studyScreen').classList.remove('active');
-            document.getElementById('landingScreen').classList.remove('hidden');
-        }
-        
-        // ============ FILTERING ============
-        function filterQuestions() {
-            if (selectedTopic === 'all') {
+        // Check if it's a question number
+        const num = parseInt(value);
+        const maxId = Math.max(...questions.map(q => q.id));
+        if (!isNaN(num) && num >= 1 && num <= maxId) {
+            const questionIndex = questions.findIndex(q => q.id === num);
+            if (questionIndex !== -1) {
                 filteredQuestions = [...questions];
-            } else {
-                filteredQuestions = questions.filter(q => q.category === selectedTopic);
+                if (selectedTopic !== 'all') {
+                    filteredQuestions = questions.filter(q => q.category === selectedTopic);
+                }
+                const filteredIndex = filteredQuestions.findIndex(q => q.id === num);
+                if (filteredIndex !== -1) {
+                    currentIndex = filteredIndex;
+                    updateProgress();
+                    renderCard();
+                }
             }
+            return;
+        }
+        
+        // Keyword search
+        const term = value.toLowerCase();
+        let searchResults = questions.filter(q => {
+            const questionMatch = q.question.toLowerCase().includes(term);
+            const answerMatch = q.answer ? q.answer.toLowerCase().includes(term) : false;
+            const whyMatch = q.why ? q.why.toLowerCase().includes(term) : false;
+            const optionsMatch = q.options ? q.options.some(o => o.text.toLowerCase().includes(term)) : false;
+            return questionMatch || answerMatch || whyMatch || optionsMatch;
+        });
+        
+        if (selectedTopic !== 'all') {
+            searchResults = searchResults.filter(q => q.category === selectedTopic);
+        }
+        
+        if (searchResults.length > 0) {
+            filteredQuestions = searchResults;
             currentIndex = 0;
             updateProgress();
-        }
-        
-        // Topic filter click handlers
-        document.querySelectorAll('.topic-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.topic-btn').forEach(b => {
-                    b.classList.remove('active');
-                    b.setAttribute('aria-selected', 'false');
-                });
-                btn.classList.add('active');
-                btn.setAttribute('aria-selected', 'true');
-                selectedTopic = btn.dataset.topic;
-                document.getElementById('topicBadge').textContent = btn.textContent;
-                filterQuestions();
-                renderCard();
-            });
-        });
-        
-        // Language selector
-        document.getElementById('languageSelect').addEventListener('change', (e) => {
-            selectedLanguage = e.target.value;
             renderCard();
-        });
-        
-        // Search functionality
-        const searchInput = document.getElementById('searchInput');
-        const searchClear = document.getElementById('searchClear');
-        
-        searchInput.addEventListener('input', (e) => {
-            const value = e.target.value.trim();
-            searchClear.classList.toggle('visible', value.length > 0);
-            
-            if (value === '') {
-                filterQuestions();
-                renderCard();
-                return;
-            }
-            
-            // Check if it's a question number
-            const num = parseInt(value);
-            const maxId = Math.max(...questions.map(q => q.id));
-            if (!isNaN(num) && num >= 1 && num <= maxId) {
-                const questionIndex = questions.findIndex(q => q.id === num);
-                if (questionIndex !== -1) {
-                    filteredQuestions = [...questions];
-                    if (selectedTopic !== 'all') {
-                        filteredQuestions = questions.filter(q => q.category === selectedTopic);
-                    }
-                    const filteredIndex = filteredQuestions.findIndex(q => q.id === num);
-                    if (filteredIndex !== -1) {
-                        currentIndex = filteredIndex;
-                        updateProgress();
-                        renderCard();
-                    }
-                }
-                return;
-            }
-            
-            // Keyword search
-            const term = value.toLowerCase();
-            let searchResults = questions.filter(q => {
-                const questionMatch = q.question.toLowerCase().includes(term);
-                const answerMatch = q.answer ? q.answer.toLowerCase().includes(term) : false;
-                const whyMatch = q.why ? q.why.toLowerCase().includes(term) : false;
-                const optionsMatch = q.options ? q.options.some(o => o.text.toLowerCase().includes(term)) : false;
-                return questionMatch || answerMatch || whyMatch || optionsMatch;
-            });
-            
-            if (selectedTopic !== 'all') {
-                searchResults = searchResults.filter(q => q.category === selectedTopic);
-            }
-            
-            if (searchResults.length > 0) {
-                filteredQuestions = searchResults;
-                currentIndex = 0;
-                updateProgress();
-                renderCard();
-            } else {
-                // Show empty state
-                filteredQuestions = [];
-                renderEmptyState();
-            }
-        });
-        
-        function clearSearch() {
-            searchInput.value = '';
-            searchClear.classList.remove('visible');
-            filterQuestions();
-            renderCard();
+        } else {
+            // Show empty state
+            filteredQuestions = [];
+            renderEmptyState();
+        }
+    });
+    
+    function clearSearch() {
+        searchInput.value = '';
+        searchClear.classList.remove('visible');
+        filterQuestions();
+        renderCard();
+    }
+    
+    function renderEmptyState() {
+        const wrapper = document.getElementById('cardWrapper');
+        wrapper.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">🔍</div>
+                <div class="empty-state-text">No questions found.<br>Try a different search term.</div>
+            </div>
+        `;
+        document.getElementById('currentNum').textContent = '0';
+        document.getElementById('totalNum').textContent = '0';
+        document.getElementById('progressBar').style.width = '0%';
+    }
+    
+    // ============ CARD RENDERING ============
+    function renderCard() {
+        const q = filteredQuestions[currentIndex];
+        if (!q) {
+            renderEmptyState();
+            return;
         }
         
-        function renderEmptyState() {
-            const wrapper = document.getElementById('cardWrapper');
-            wrapper.innerHTML = `
-                <div class="empty-state">
-                    <div class="empty-state-icon">🔍</div>
-                    <div class="empty-state-text">No questions found.<br>Try a different search term.</div>
-                </div>
-            `;
-            document.getElementById('currentNum').textContent = '0';
-            document.getElementById('totalNum').textContent = '0';
-            document.getElementById('progressBar').style.width = '0%';
+        quizRevealed = false;
+        
+        const wrapper = document.getElementById('cardWrapper');
+        wrapper.className = 'card-wrapper';
+        
+        // Build answer HTML
+        let answerHTML = '';
+        if (q.type === 'text') {
+            answerHTML = `<div class="answer-text">${q.answer}</div>`;
+        } else if (q.type === 'multiple' && q.options) {
+            answerHTML = `<ul class="answer-options">
+                ${q.options.map(opt => `
+                    <li class="${opt.correct ? 'correct' : ''}">${opt.text}</li>
+                `).join('')}
+            </ul>`;
         }
         
-        // ============ CARD RENDERING ============
-        function renderCard() {
-            const q = filteredQuestions[currentIndex];
-            if (!q) {
-                renderEmptyState();
-                return;
-            }
-            
-            quizRevealed = false;
-            
-            const wrapper = document.getElementById('cardWrapper');
-            wrapper.className = 'card-wrapper';
-            
-            // Build answer HTML
-            let answerHTML = '';
-            if (q.type === 'text') {
-                answerHTML = `<div class="answer-text">${q.answer}</div>`;
-            } else if (q.type === 'multiple' && q.options) {
-                answerHTML = `<ul class="answer-options">
-                    ${q.options.map(opt => `
-                        <li class="${opt.correct ? 'correct' : ''}">${opt.text}</li>
-                    `).join('')}
-                </ul>`;
-            }
-            
-            // Quiz mode: hide answer and why sections initially
-            const contentDisplay = isQuizMode && !quizRevealed ? 'none' : 'block';
-            
-            // Study Mode: Why first, then Answer (better learning flow)
-            // Quiz Mode: Answer first, then Why (both hidden until reveal)
-            const whySection = `
-                <div class="content-section why-section" id="whySection" style="display: ${contentDisplay}">
-                    <div class="section-label why">💡 Why this matters</div>
-                    <div class="why-text">${q.why || 'Understanding this helps you apply the knowledge in real situations.'}</div>
+        // Quiz mode: hide answer and why sections initially
+        const contentDisplay = isQuizMode && !quizRevealed ? 'none' : 'block';
+        
+        // Study Mode: Why first, then Answer (better learning flow)
+        // Quiz Mode: Answer first, then Why (both hidden until reveal)
+        const whySection = `
+            <div class="content-section why-section" id="whySection" style="display: ${contentDisplay}">
+                <div class="section-label why">💡 Why this matters</div>
+                <div class="why-text">${q.why || 'Understanding this helps you apply the knowledge in real situations.'}</div>
+            </div>
+        `;
+        
+        const answerSection = `
+            <div class="content-section answer-section" id="answerSection" style="display: ${contentDisplay}">
+                <div class="section-label answer">✓ Answer</div>
+                ${answerHTML}
+            </div>
+        `;
+        
+        wrapper.innerHTML = `
+            <div class="question-card">
+                <div class="question-header">
+                    <span class="question-number-badge">Q${q.id}</span>
+                    <p class="question-text">${q.question}</p>
                 </div>
-            `;
-            
-            const answerSection = `
-                <div class="content-section answer-section" id="answerSection" style="display: ${contentDisplay}">
-                    <div class="section-label answer">✓ Answer</div>
-                    ${answerHTML}
-                </div>
-            `;
-            
-            wrapper.innerHTML = `
-                <div class="question-card">
-                    <div class="question-header">
-                        <span class="question-number-badge">Q${q.id}</span>
-                        <p class="question-text">${q.question}</p>
-                    </div>
-                    
-                    <div class="card-content">
-                        ${isQuizMode ? `
-                            <!-- Quiz Mode: Show reveal button first, then answer, then why -->
-                            <div class="content-section quiz-reveal-section" id="quizRevealSection" style="display: ${quizRevealed ? 'none' : 'block'}">
-                                <button class="quiz-reveal-btn" onclick="revealAnswer()">
-                                    <span>🤔</span>
-                                    Tap to reveal answer
-                                </button>
-                            </div>
-                            ${answerSection}
-                            ${whySection}
-                        ` : `
-                            <!-- Study Mode: Why first (context), then answer -->
-                            ${whySection}
-                            ${answerSection}
-                        `}
-                        
-                        <!-- TRANSLATION section -->
-                        <div class="content-section" id="translationSection" style="display: none;">
-                            <div class="section-label translation">🌐 <span id="translationLang">Translation</span></div>
-                            <div class="translation-text" id="translationText"></div>
+                
+                <div class="card-content">
+                    ${isQuizMode ? `
+                        <!-- Quiz Mode: Show reveal button first, then answer, then why -->
+                        <div class="content-section quiz-reveal-section" id="quizRevealSection" style="display: ${quizRevealed ? 'none' : 'block'}">
+                            <button class="quiz-reveal-btn" onclick="revealAnswer()">
+                                <span>🤔</span>
+                                Tap to reveal answer
+                            </button>
                         </div>
+                        ${answerSection}
+                        ${whySection}
+                    ` : `
+                        <!-- Study Mode: Why first (context), then answer -->
+                        ${whySection}
+                        ${answerSection}
+                    `}
+                    
+                    <!-- TRANSLATION section -->
+                    <div class="content-section" id="translationSection" style="display: none;">
+                        <div class="section-label translation">🌐 <span id="translationLang">Translation</span></div>
+                        <div class="translation-text" id="translationText"></div>
                     </div>
                 </div>
-            `;
-            
-            // Translate if language selected and not quiz mode (or quiz revealed)
-            if (selectedLanguage && (!isQuizMode || quizRevealed)) {
-                translateAnswer(q.answer);
+            </div>
+        `;
+        
+        // Translate if language selected and not quiz mode (or quiz revealed)
+        if (selectedLanguage && (!isQuizMode || quizRevealed)) {
+            translateAnswer(q.answer);
+        }
+        
+        updateProgress();
+        updateNavButtons();
+    }
+    
+    function revealAnswer() {
+        const answerSection = document.getElementById('answerSection');
+        const whySection = document.getElementById('whySection');
+        const quizRevealSection = document.getElementById('quizRevealSection');
+        
+        answerSection.style.display = 'block';
+        whySection.style.display = 'block';
+        if (quizRevealSection) quizRevealSection.style.display = 'none';
+        quizRevealed = true;
+        
+        // Translate if needed
+        if (selectedLanguage) {
+            const q = filteredQuestions[currentIndex];
+            translateAnswer(q.answer);
+        }
+    }
+    
+    // ============ TRANSLATION ============
+    async function translateAnswer(text) {
+        if (!selectedLanguage || !text) return;
+        
+        const section = document.getElementById('translationSection');
+        const textEl = document.getElementById('translationText');
+        const langEl = document.getElementById('translationLang');
+        
+        if (!section || !textEl) return;
+        
+        section.style.display = 'block';
+        textEl.textContent = 'Translating...';
+        
+        const langNames = {
+            'tl': 'Filipino',
+            'id': 'Indonesian', 
+            'es': 'Spanish',
+            'pt': 'Portuguese',
+            'fr': 'French',
+            'de': 'German',
+            'it': 'Italian',
+            'nl': 'Dutch',
+            'mi': 'Te Reo Māori',
+            'ru': 'Russian',
+            'zh': 'Chinese',
+            'vi': 'Vietnamese',
+            'th': 'Thai',
+            'ko': 'Korean',
+            'ja': 'Japanese'
+        };
+        
+        langEl.textContent = langNames[selectedLanguage] || 'Translation';
+        
+        try {
+            const response = await fetch(
+                `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${selectedLanguage}&dt=t&q=${encodeURIComponent(text)}`
+            );
+            const data = await response.json();
+            const translated = data[0].map(item => item[0]).join('');
+            textEl.textContent = translated;
+        } catch (error) {
+            textEl.textContent = 'Translation unavailable';
+        }
+    }
+    
+    // ============ NAVIGATION ============
+    function nextQuestion() {
+        if (currentIndex < filteredQuestions.length - 1) {
+            animateSlide('left');
+            currentIndex++;
+            setTimeout(renderCard, 150);
+        }
+    }
+    
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            animateSlide('right');
+            currentIndex--;
+            setTimeout(renderCard, 150);
+        }
+    }
+    
+    function animateSlide(direction) {
+        const wrapper = document.getElementById('cardWrapper');
+        wrapper.classList.add(`slide-${direction}`);
+    }
+    
+    function updateProgress() {
+        document.getElementById('currentNum').textContent = filteredQuestions.length > 0 ? currentIndex + 1 : 0;
+        document.getElementById('totalNum').textContent = filteredQuestions.length;
+        
+        const percent = filteredQuestions.length > 0 ? ((currentIndex + 1) / filteredQuestions.length) * 100 : 0;
+        document.getElementById('progressBar').style.width = `${percent}%`;
+    }
+    
+    function updateNavButtons() {
+        document.getElementById('prevBtn').disabled = currentIndex === 0;
+        document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1 || filteredQuestions.length === 0;
+    }
+    
+    // ============ TOUCH/SWIPE HANDLING ============
+    const cardArea = document.getElementById('cardArea');
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    cardArea.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    
+    cardArea.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const touchEndY = e.changedTouches[0].screenY;
+        handleSwipe(touchStartX, touchEndX, touchStartY, touchEndY);
+    }, { passive: true });
+    
+    function handleSwipe(startX, endX, startY, endY) {
+        const horizontalDiff = startX - endX;
+        const verticalDiff = Math.abs(startY - endY);
+        const threshold = 50;
+        
+        if (Math.abs(horizontalDiff) > threshold && Math.abs(horizontalDiff) > verticalDiff) {
+            if (horizontalDiff > 0) {
+                nextQuestion();
+            } else {
+                prevQuestion();
             }
-            
-            updateProgress();
-            updateNavButtons();
         }
-        
-        function revealAnswer() {
-            const answerSection = document.getElementById('answerSection');
-            const whySection = document.getElementById('whySection');
-            const quizRevealSection = document.getElementById('quizRevealSection');
-            
-            answerSection.style.display = 'block';
-            whySection.style.display = 'block';
-            if (quizRevealSection) quizRevealSection.style.display = 'none';
-            quizRevealed = true;
-            
-            // Translate if needed
-            if (selectedLanguage) {
-                const q = filteredQuestions[currentIndex];
-                translateAnswer(q.answer);
+    }
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (document.getElementById('studyScreen').classList.contains('active')) {
+            if (e.key === 'ArrowRight') nextQuestion();
+            if (e.key === 'ArrowLeft') prevQuestion();
+            if (e.key === ' ' && isQuizMode && !quizRevealed) {
+                e.preventDefault();
+                revealAnswer();
             }
         }
-        
-        // ============ TRANSLATION ============
-        async function translateAnswer(text) {
-            if (!selectedLanguage || !text) return;
-            
-            const section = document.getElementById('translationSection');
-            const textEl = document.getElementById('translationText');
-            const langEl = document.getElementById('translationLang');
-            
-            if (!section || !textEl) return;
-            
-            section.style.display = 'block';
-            textEl.textContent = 'Translating...';
-            
-            const langNames = {
-                'tl': 'Filipino',
-                'id': 'Indonesian', 
-                'es': 'Spanish',
-                'pt': 'Portuguese',
-                'fr': 'French',
-                'de': 'German',
-                'it': 'Italian',
-                'nl': 'Dutch',
-                'mi': 'Te Reo Māori',
-                'ru': 'Russian',
-                'zh': 'Chinese',
-                'vi': 'Vietnamese',
-                'th': 'Thai',
-                'ko': 'Korean',
-                'ja': 'Japanese'
-            };
-            
-            langEl.textContent = langNames[selectedLanguage] || 'Translation';
-            
-            try {
-                const response = await fetch(
-                    `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${selectedLanguage}&dt=t&q=${encodeURIComponent(text)}`
-                );
-                const data = await response.json();
-                const translated = data[0].map(item => item[0]).join('');
-                textEl.textContent = translated;
-            } catch (error) {
-                textEl.textContent = 'Translation unavailable';
-            }
-        }
-        
-        // ============ NAVIGATION ============
-        function nextQuestion() {
-            if (currentIndex < filteredQuestions.length - 1) {
-                animateSlide('left');
-                currentIndex++;
-                setTimeout(renderCard, 150);
-            }
-        }
-        
-        function prevQuestion() {
-            if (currentIndex > 0) {
-                animateSlide('right');
-                currentIndex--;
-                setTimeout(renderCard, 150);
-            }
-        }
-        
-        function animateSlide(direction) {
-            const wrapper = document.getElementById('cardWrapper');
-            wrapper.classList.add(`slide-${direction}`);
-        }
-        
-        function updateProgress() {
-            document.getElementById('currentNum').textContent = filteredQuestions.length > 0 ? currentIndex + 1 : 0;
-            document.getElementById('totalNum').textContent = filteredQuestions.length;
-            
-            const percent = filteredQuestions.length > 0 ? ((currentIndex + 1) / filteredQuestions.length) * 100 : 0;
-            document.getElementById('progressBar').style.width = `${percent}%`;
-        }
-        
-        function updateNavButtons() {
-            document.getElementById('prevBtn').disabled = currentIndex === 0;
-            document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1 || filteredQuestions.length === 0;
-        }
-        
-        // ============ TOUCH/SWIPE HANDLING ============
-        const cardArea = document.getElementById('cardArea');
-        let touchStartX = 0;
-        let touchStartY = 0;
-        
-        cardArea.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        }, { passive: true });
-        
-        cardArea.addEventListener('touchend', (e) => {
-            const touchEndX = e.changedTouches[0].screenX;
-            const touchEndY = e.changedTouches[0].screenY;
-            handleSwipe(touchStartX, touchEndX, touchStartY, touchEndY);
-        }, { passive: true });
-        
-        function handleSwipe(startX, endX, startY, endY) {
-            const horizontalDiff = startX - endX;
-            const verticalDiff = Math.abs(startY - endY);
-            const threshold = 50;
-            
-            if (Math.abs(horizontalDiff) > threshold && Math.abs(horizontalDiff) > verticalDiff) {
-                if (horizontalDiff > 0) {
-                    nextQuestion();
-                } else {
-                    prevQuestion();
-                }
-            }
-        }
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('studyScreen').classList.contains('active')) {
-                if (e.key === 'ArrowRight') nextQuestion();
-                if (e.key === 'ArrowLeft') prevQuestion();
-                if (e.key === ' ' && isQuizMode && !quizRevealed) {
-                    e.preventDefault();
-                    revealAnswer();
-                }
-            }
-        });
-    </script>
+    });
+</script>
+```
+
 </body>
 </html>
