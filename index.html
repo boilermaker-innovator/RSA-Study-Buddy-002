@@ -362,33 +362,25 @@
         .card-area {
             flex: 1;
             position: relative;
-            overflow: hidden;
-            touch-action: pan-y;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         
         .card-wrapper {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 20px;
-            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            transition: opacity 0.3s ease-out;
         }
         
         .card-wrapper.slide-left {
-            transform: translateX(-100%);
             opacity: 0;
         }
         
         .card-wrapper.slide-right {
-            transform: translateX(100%);
             opacity: 0;
         }
         
         .question-card {
             width: 100%;
-            max-width: 440px;
             background: var(--bg-card);
             border-radius: 20px;
             border: 1px solid var(--border);
@@ -893,10 +885,6 @@
         let isQuizMode = false;
         let quizRevealed = false;
         
-        // Touch handling
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
         // ============ NAVIGATION ============
         function startStudying() {
             isQuizMode = false;
@@ -1182,22 +1170,29 @@
         
         // ============ TOUCH/SWIPE HANDLING ============
         const cardArea = document.getElementById('cardArea');
+        let touchStartX = 0;
+        let touchStartY = 0;
         
         cardArea.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
         }, { passive: true });
         
         cardArea.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+            handleSwipe(touchStartX, touchEndX, touchStartY, touchEndY);
         }, { passive: true });
         
-        function handleSwipe() {
+        function handleSwipe(startX, endX, startY, endY) {
+            const horizontalDiff = startX - endX;
+            const verticalDiff = Math.abs(startY - endY);
             const threshold = 50;
-            const diff = touchStartX - touchEndX;
             
-            if (Math.abs(diff) > threshold) {
-                if (diff > 0) {
+            // Only trigger swipe if horizontal movement is greater than vertical
+            // This prevents swipe when user is scrolling up/down
+            if (Math.abs(horizontalDiff) > threshold && Math.abs(horizontalDiff) > verticalDiff) {
+                if (horizontalDiff > 0) {
                     // Swiped left - next question
                     nextQuestion();
                 } else {
